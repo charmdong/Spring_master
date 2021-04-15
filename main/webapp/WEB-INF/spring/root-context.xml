@@ -8,8 +8,12 @@
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	
+	<!-- RequestMappingHandlerMapping, RequestMappingHandlerAdapter, ConversionService -->
 	<mvc:annotation-driven/>
 	
+	<mvc:default-servlet-handler/>
+	
+	<!-- JSP를 이용해서 view를 생성할 때 필요 -->	
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/" />
 		<property name="suffix" value=".jsp" />
