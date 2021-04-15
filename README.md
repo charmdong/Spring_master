@@ -18,5 +18,5 @@ Spring의 MVC, AOP, JPA, Security, Unit Test, Log 등의 개념을 단계적으�
 
 ## Dev Environment
 1. Java 8
-2. Eclipse (4.13.0)
+2. STS 3 (3.9.12.RELEASE)
 3. Tomcat 8.5
