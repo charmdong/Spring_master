@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Hello world!</title>
 </head>
 <body>
 인사말: ${greeting}
+
 </body>
 </html>
