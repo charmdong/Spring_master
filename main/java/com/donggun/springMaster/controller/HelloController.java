@@ -35,4 +35,5 @@ public class HelloController {
 		model.addAttribute("requestParam", requestParam);
 		return "detail";
 	}
+	
 }
