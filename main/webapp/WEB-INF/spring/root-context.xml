@@ -25,6 +25,4 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<bean id="Hello" class="com.donggun.springMaster.controller.HelloController" />
-	<bean id="Member" class="com.donggun.springMaster.controller.MemberController" />
 </beans>	
