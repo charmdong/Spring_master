@@ -7,10 +7,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.donggun.springMaster.dto.MemberVO;
 
+/**
+ * @author donggun.Chung
+ * @since 2021.04.17.
+ * @version 1.0
+ */
 @RequestMapping("/member")
-@Controller
+@Controller("Member")
 public class MemberController {
 
+	@RequestMapping("/login")
+	public String memberLogin() {
+		return "member/login";
+	}
+	
 	@RequestMapping("/list")
 	public String memberList() {
 		return "member/list";
@@ -23,7 +33,7 @@ public class MemberController {
 	
 	@RequestMapping("/registForm")
 	public String registForm() {
-		return "member/registForm";
+		return "member/join";
 	}
 	
 	// 커맨드 객체 Test 
