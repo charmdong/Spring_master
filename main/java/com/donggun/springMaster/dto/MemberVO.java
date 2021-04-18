@@ -30,6 +30,10 @@ public class MemberVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
+	@Override
+	public String toString() {
+		return "MemberVO [name=" + name + ", email=" + email + ", id=" + id + ", password=" + password + "]";
+	}
 	
 }
