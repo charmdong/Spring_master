@@ -18,6 +18,10 @@
                 <input type="password" name="password">
             </div>
             <div>
+                <span>패스워드 확인</span>
+                <input type="password" name="confirmPassword">
+            </div>
+            <div>
                 <span>이름</span>
                 <input type="text" name="name">
             </div>
@@ -46,6 +50,13 @@
             alert("패스워드를 입력해주세요.");
             password.focus();
             return false;
+        }
+        
+        let confirmPassword = registForm.querySelector("input[name='confirmPassword']");
+        if(confirmPassword.value == '') {
+        	alert("패스워드가 일치하지 않습니다.");
+        	confirmPassword.focus();
+        	return false;
         }
 
         let name = registForm.querySelector("input[name='name']");

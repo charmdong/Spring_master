@@ -9,16 +9,16 @@
 <body>
     <div>
         <span>아이디</span>
-        <input type="text" value="${memberVO.id}">
+        <input type="text" value="${memberInfo.id}">
         
         <span>패스워드</span>
-        <input type="password" value="${memberVO.password}"> 
+        <input type="password" value="${memberInfo.password}"> 
         
         <span>이름</span>
-        <input type="text" value="${memberVO.name}">
+        <input type="text" value="${memberInfo.name}">
         
         <span>이메일</span>
-        <input type="text" value="${memberVO.email}">
+        <input type="text" value="${memberInfo.email}">
     </div>
 </body>
 </html>
