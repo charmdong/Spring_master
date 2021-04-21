@@ -1,8 +1,12 @@
 package com.donggun.springMaster.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,14 +46,15 @@ public class MemberController {
 	/**
 	 * 커맨드 객체 Test
 	 * 전달인자로 커맨드 객체 뒤에 바로 Errors나 BindingResult가 위치해야 한다.
+	 * @Valid annotation 적용
 	 * 
 	 * @param member
 	 * @param errors
 	 */
 	@RequestMapping("/regist")
-	public String memberRegist(@ModelAttribute("memberInfo") MemberVO member, Errors errors) {
+	public String memberRegist(@Valid @ModelAttribute("memberInfo") MemberVO member, Errors errors) {
 		// 커맨드 객체 값 검증
-		new MemberVOValidator().validate(member, errors);
+		// new MemberVOValidator().validate(member, errors);
 		if(errors.hasErrors()) {
 			return "member/join";
 		}
@@ -57,5 +62,14 @@ public class MemberController {
 		// TODO Service BL
 		
 		return "member/detail";
+	}
+	
+	/**
+	 * 폼과 커맨드 객체를 매핑해주는 WebDataBinder를 초기화
+	 * @param binder
+	 */
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		binder.setValidator(new MemberVOValidator());
 	}
 }
