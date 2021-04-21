@@ -8,6 +8,7 @@
 1. 커맨드 객체(DTO, VO)에 대한 값 검증 <br/>
   1-1. Validator 인터페이스를 활용한 값 검증 및 에러 코드 설정 (Errors) <br/>
   1-2. MessageSource를 통한 에러 코드 -> 에러 메시지 매핑 <br/>
+  1-3. @Valid, @InitBinder 어노테이션 적용을 통한 커맨드 객체 값 검증 <br/>
 
 <br/>
 
