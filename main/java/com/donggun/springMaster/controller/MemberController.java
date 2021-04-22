@@ -23,7 +23,7 @@ import com.donggun.springMaster.validator.MemberVOValidator;
 @Controller("Member")
 public class MemberController {
 
-	@RequestMapping("/login")
+	@RequestMapping("/loginForm")
 	public String memberLogin() {
 		return "member/login";
 	}
