@@ -1,11 +1,17 @@
 package com.donggun.springMaster.dto;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class MemberVO {
-	private String name;
-	private String email;
-	private String id;
-	private String password;
-	private String confirmPassword;
+	
+	@NotNull @NotEmpty private String name;
+	@NotNull @Email private String email;
+	@NotNull @NotEmpty private String id;
+	@NotNull @NotEmpty private String password;
+	@NotNull @NotEmpty private String confirmPassword;
 	
 	public String getName() {
 		return name;
