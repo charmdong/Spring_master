@@ -43,6 +43,15 @@ public class MemberController {
 		return "member/join";
 	}
 	
+	@RequestMapping("/modify")
+	public String memberModify(@Valid @ModelAttribute("memberInfo") MemberVO member, Errors errors) {
+		if(errors.hasErrors()) {
+			return "member/join";	
+		}
+		
+		return "member/detail";
+	}
+	
 	/**
 	 * 커맨드 객체 Test
 	 * 전달인자로 커맨드 객체 뒤에 바로 Errors나 BindingResult가 위치해야 한다.
