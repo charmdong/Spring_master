@@ -8,6 +8,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -23,33 +24,71 @@ import com.donggun.springMaster.validator.MemberVOValidator;
 @Controller("Member")
 public class MemberController {
 
+	/**
+	 * 로그인 
+	 * @return view name
+	 */
 	@RequestMapping("/loginForm")
 	public String memberLogin() {
 		return "member/login";
 	}
 	
+	/**
+	 * 사용자 목록 조회 
+	 * @return view name
+	 */
 	@RequestMapping("/list")
 	public String memberList() {
 		return "member/list";
 	}
 	
+	/**
+	 * 사용자 정보 상세 조회
+	 * @param id
+	 * @param model
+	 * @return view name
+	 */
 	@RequestMapping("/detail")
 	public String memberDetail(@RequestParam(value="id", required=true, defaultValue="admin") String id, Model model) {
 		return "member/detail";
 	}
 	
+	/**
+	 * 사용자 등록
+	 * @return view name
+	 */
 	@RequestMapping("/registForm")
 	public String registForm() {
 		return "member/join";
 	}
 	
+	/**
+	 * 사용자 정보 수정폼 
+	 * @param id
+	 * @param model
+	 * @return view
+	 */
+	@RequestMapping("/modifyForm/{id}") 
+	public String modifyForm(@PathVariable("id") String id, Model model) {
+		// TODO MemberVO memberInfo = MemberService.getMemberInfo(id);
+		// model.addAttribute("memberInfo", memberInfo);
+		
+		return "member/join";
+	}
+	
+	/**
+	 * 사용자 정보 수정
+	 * @param member
+	 * @param errors
+	 * @return view name
+	 */
 	@RequestMapping("/modify")
 	public String memberModify(@Valid @ModelAttribute("memberInfo") MemberVO member, Errors errors) {
 		if(errors.hasErrors()) {
-			return "member/join";	
+			return "member/detail";	
 		}
 		
-		return "member/detail";
+		return "member/index";
 	}
 	
 	/**
