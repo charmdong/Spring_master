@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.donggun.springMaster.dto.MemberVO;
 import com.donggun.springMaster.validator.MemberVOValidator;
@@ -22,15 +24,45 @@ import com.donggun.springMaster.validator.MemberVOValidator;
  */
 @RequestMapping("/member")
 @Controller("Member")
+@SessionAttributes("userInfo")
 public class MemberController {
 
+	
+	@ModelAttribute("userInfo")
+	public MemberVO userData() {
+		return new MemberVO();
+	}
+	
 	/**
-	 * 로그인 
+	 * 로그인 form
 	 * @return view name
 	 */
 	@RequestMapping("/loginForm")
-	public String memberLogin() {
+	public String loginForm() {
 		return "member/login";
+	}
+	
+	/**
+	 * 로그인
+	 * @param member
+	 * @return view name
+	 */
+	@RequestMapping("/login")
+	public String memberLogin(@ModelAttribute("userInfo") MemberVO member) {
+		// TODO validate id, password
+		return "redirect:/index";
+	}
+	
+	/**
+	 * 로그아웃
+	 * @param sessionStatus
+	 * @return view name
+	 */
+	@RequestMapping("/logout")
+	public String memberLogout(SessionStatus sessionStatus) {
+		sessionStatus.setComplete();
+		
+		return "redirect:/index";
 	}
 	
 	/**
