@@ -4,7 +4,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.donggun.springMaster.dto.MemberVO;
+import com.donggun.springMaster.vo.MemberVO;
 
 /**
  * MemberVO 커맨드 객체 값 검증을 위함 

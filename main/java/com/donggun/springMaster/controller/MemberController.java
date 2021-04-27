@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import com.donggun.springMaster.dto.MemberVO;
 import com.donggun.springMaster.validator.MemberVOValidator;
+import com.donggun.springMaster.vo.MemberVO;
 
 /**
  * @author donggun.Chung
@@ -50,6 +50,7 @@ public class MemberController {
 	@RequestMapping("/login")
 	public String memberLogin(@ModelAttribute("userInfo") MemberVO member) {
 		// TODO validate id, password
+		// TODO cookie 설정
 		return "redirect:/index";
 	}
 	
