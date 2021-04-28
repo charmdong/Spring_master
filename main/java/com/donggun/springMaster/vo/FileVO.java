@@ -10,16 +10,16 @@ import javax.validation.constraints.Size;
  */
 public class FileVO {
 	
-	private String postNo;		// FK
-	private String fileName;	// CPK with postNo
+	private String boardNo;		// FK
+	private String fileName;	// CPK with boardNo
 	private String filePath;
 	@Size(max=1024000) private String fileSize;
 	
-	public String getPostNo() {
-		return postNo;
+	public String getboardNo() {
+		return boardNo;
 	}
-	public void setPostNo(String postNo) {
-		this.postNo = postNo;
+	public void setboardNo(String boardNo) {
+		this.boardNo = boardNo;
 	}
 	public String getFileName() {
 		return fileName;

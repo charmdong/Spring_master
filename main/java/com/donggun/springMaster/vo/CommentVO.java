@@ -13,7 +13,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class CommentVO {
 	private String commentNo;	// PK
-	private String postNo;		// FK
+	private String boardNo;		// FK
 	@NotNull @NotEmpty private String regId;
 	@NotNull @NotEmpty @Size(min=1, max=1000) private String content;
 	
@@ -23,11 +23,11 @@ public class CommentVO {
 	public void setCommentNo(String commentNo) {
 		this.commentNo = commentNo;
 	}
-	public String getPostNo() {
-		return postNo;
+	public String getboardNo() {
+		return boardNo;
 	}
-	public void setPostNo(String postNo) {
-		this.postNo = postNo;
+	public void setboardNo(String boardNo) {
+		this.boardNo = boardNo;
 	}
 	public String getRegId() {
 		return regId;
