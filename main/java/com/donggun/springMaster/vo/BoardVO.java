@@ -10,18 +10,18 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @since 2021.04.27.
  * @version 1.0
  */
-public class PostVO {
-	@NotNull @NotEmpty private String postNo;	// PK
+public class BoardVO {
+	@NotNull @NotEmpty private String boardNo;	// PK
 	@NotNull @NotEmpty private String regId; 	// FK
 	private String regDate;
 	private String content;
 	private int likeCnt;
 	
-	public String getPostNo() {
-		return postNo;
+	public String getboardNo() {
+		return boardNo;
 	}
-	public void setPostNo(String postNo) {
-		this.postNo = postNo;
+	public void setboardNo(String boardNo) {
+		this.boardNo = boardNo;
 	}
 	public String getRegId() {
 		return regId;
