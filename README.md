@@ -35,6 +35,10 @@
 3. AOP
 4. JPA
 5. MySQL
+6. Spring Batch
+7. Spring Security
+8. log4j
+9. Unit Test
 
 ## Dev Environment
 1. Java 8
