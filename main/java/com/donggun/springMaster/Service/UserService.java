@@ -1,4 +1,4 @@
-package com.donggun.springMaster.Service;
+package com.donggun.springMaster.service;
 
 /**
  * UserService Interface

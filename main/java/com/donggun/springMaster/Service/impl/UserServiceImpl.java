@@ -1,8 +1,8 @@
-package com.donggun.springMaster.Service.impl;
+package com.donggun.springMaster.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.donggun.springMaster.Service.UserService;
+import com.donggun.springMaster.service.UserService;
 
 /**
  * User Service Implement
