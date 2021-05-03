@@ -20,16 +20,6 @@ import com.donggun.springMaster.vo.UserVO;
 public class UserController {
 	
 	/**
-	 * 로그인 페이지로 이동
-	 * @param 
-	 * @return loginForm.jsp
-	 */
-	@RequestMapping(value="/loginForm", method=RequestMethod.GET)
-	public String loginForm() {
-		return "loginForm";
-	}
-	
-	/**
 	 * 로그인
 	 * @param user
 	 * @return main.jsp

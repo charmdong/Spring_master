@@ -8,11 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller("Hello")
 public class HelloController {
 	
-	@RequestMapping(value= {"/main", "/index"})
-	public String hello(Model model) {
-		model.addAttribute("greeting", "Hello everyone!");
-		return "hello";
-	}
 	
 	// @PathVariable Test
 	@RequestMapping("/multiple/{number}")
