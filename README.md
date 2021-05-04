@@ -20,6 +20,9 @@
   1-3. @Valid, @InitBinder 어노테이션 적용을 통한 커맨드 객체 값 검증 <br/>
 2. 세션 값 관리 <br/>
   2-1. @SessionAttributes, @ModelAttribute를 사용한 세션 객체 설정, SessionStatus.setComplete()를 통한 세션 객체 제거 <br/>
+3. Interceptor를 통한 요청 처리 중재 <br/>
+  3-1. AuthInterceptor: 로그인 여부 확인
+  3-2. MeasuringInterceptor: 요청 처리 시간 출력 (추후 AOP 적용시 제거) <br/>
   
 <br/>
 
