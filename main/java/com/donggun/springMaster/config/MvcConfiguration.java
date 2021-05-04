@@ -1,11 +1,16 @@
 package com.donggun.springMaster.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import com.donggun.springMaster.interceptor.AuthInterceptor;
+import com.donggun.springMaster.interceptor.MeasuringInterceptor;
 
 /**
  * MVC 커스텀 설정
@@ -42,8 +47,30 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 	 */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/images/**").addResourceLocations("/img/", "/WEB-INF/resources")
+		registry.addResourceHandler("/images/**")
+				.addResourceLocations("/img/", "/WEB-INF/resources")
 				.setCachePeriod(60);
 	}
 
+	/**
+	 * 인터셉터 추가
+	 */
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(measuringInterceptor());
+		
+		registry.addInterceptor(authInterceptor())
+				.addPathPatterns("/user/**")
+				.addPathPatterns("/board/**");
+	}
+
+	@Bean
+	public MeasuringInterceptor measuringInterceptor() {
+		return new MeasuringInterceptor();
+	}
+	
+	@Bean
+	public AuthInterceptor authInterceptor() {
+		return new AuthInterceptor();
+	}
 }
