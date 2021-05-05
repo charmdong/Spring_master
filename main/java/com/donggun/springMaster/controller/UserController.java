@@ -1,5 +1,7 @@
 package com.donggun.springMaster.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.donggun.springMaster.vo.LoginVO;
 import com.donggun.springMaster.vo.UserVO;
 
 /**
@@ -25,8 +28,17 @@ public class UserController {
 	 * @return main.jsp
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(@RequestBody UserVO user) {
+	public String login(@RequestBody UserVO user, HttpSession session) {
 		// TOOD login BL
+		
+		LoginVO loginVO = new LoginVO();
+		
+		loginVO.setId(user.getId());
+		loginVO.setName(user.getName());
+		loginVO.setLoginDate(new Date());
+		// loginVO.setIsAdmin(false);
+		
+		session.setAttribute("loginInfo", loginVO);
 		
 		return "main";
 	}
