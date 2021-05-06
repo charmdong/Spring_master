@@ -36,7 +36,7 @@
 1. Java
 2. Spring Framework
 3. AOP
-4. JPA
+4. [JPA](https://chungdk.tistory.com/33)
 5. MySQL
 6. Spring Batch
 7. Spring Security
