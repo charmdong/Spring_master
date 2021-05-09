@@ -1,5 +1,7 @@
 package com.donggun.springMaster.vo;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
@@ -11,6 +13,9 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @since 2021.04.27.
  * @version 1.0
  */
+
+@Entity
+@Table(name="User")
 public class UserVO {
 	
 	@NotNull @NotEmpty private String id;		// PK, FK
