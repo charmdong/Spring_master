@@ -1,7 +1,14 @@
 package com.donggun.springMaster.vo;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
@@ -18,7 +25,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name="User")
 public class UserVO {
 	
-	@NotNull @NotEmpty private String id;		// PK, FK
+	@Id @NotNull @NotEmpty private String id;		// PK, FK
 	@NotNull @NotEmpty private String nickName;
 	@NotNull @NotEmpty private String password;
 	@NotNull @NotEmpty private String name;
@@ -26,6 +33,15 @@ public class UserVO {
 	@NotNull @NotEmpty private String phone;
 	private String homepage;
 	private String description;
+	
+	@Enumerated(EnumType.STRING)
+	private RoleType roleType;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdDate;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date modifiedDate;
 	
 	public String getId() {
 		return id;
@@ -75,6 +91,5 @@ public class UserVO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 	
 }
