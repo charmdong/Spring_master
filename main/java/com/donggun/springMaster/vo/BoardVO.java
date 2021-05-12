@@ -1,8 +1,12 @@
 package com.donggun.springMaster.vo;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -19,7 +23,9 @@ public class BoardVO {
 	
 	@Id @NotNull @NotEmpty private String boardNo;	// PK
 	@NotNull @NotEmpty private String regId; 	// FK
-	private String regDate;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date regDate;
 	private String content;
 	private int likeCnt;
 	
@@ -35,10 +41,10 @@ public class BoardVO {
 	public void setRegId(String regId) {
 		this.regId = regId;
 	}
-	public String getRegDate() {
+	public Date getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(String regDate) {
+	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
 	public String getContent() {

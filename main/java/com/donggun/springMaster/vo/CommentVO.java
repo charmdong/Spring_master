@@ -1,8 +1,12 @@
 package com.donggun.springMaster.vo;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -21,6 +25,9 @@ public class CommentVO {
 	@NotNull @NotEmpty private String regId;
 	@NotNull @NotEmpty @Size(min=1, max=1000) private String content;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date regDate;
+	
 	public String getCommentNo() {
 		return commentNo;
 	}
@@ -38,6 +45,12 @@ public class CommentVO {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public Date getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
 	
 }
