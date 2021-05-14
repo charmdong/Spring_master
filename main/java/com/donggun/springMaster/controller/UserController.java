@@ -29,14 +29,14 @@ public class UserController {
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(@RequestBody UserVO user, HttpSession session) {
-		// TOOD login BL
+		// UserVO userVO = userService.getUserInfo(user);
 		
 		LoginVO loginVO = new LoginVO();
 		
 		loginVO.setId(user.getId());
 		loginVO.setName(user.getName());
 		loginVO.setLoginDate(new Date());
-		// loginVO.setIsAdmin(false);
+		// loginVO.setIsAdmin(userVO.getRoleType() == 0);
 		
 		session.setAttribute("loginInfo", loginVO);
 		
