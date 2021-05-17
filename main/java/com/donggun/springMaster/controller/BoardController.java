@@ -28,7 +28,7 @@ public class BoardController {
 	 * @return list.jsp
 	 */
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String getBoardList(@RequestParam("id") String id, Model model) {
+	public String getBoardList(@RequestParam(value="id", required=true) String id, Model model) {
 		// List<BoardVO> boardList = boardService.getBoardList();
 		// model.addAttribute("boardList", boardList);
 		
@@ -57,7 +57,7 @@ public class BoardController {
 	 * @return list.jsp
 	 */
 	@RequestMapping(value="/delete", method=RequestMethod.DELETE)
-	public String deleteBoard(@RequestParam String boardNo) {
+	public String deleteBoard(@RequestParam(value="boardNo", required=true) String boardNo) {
 		// boardService.deleteBoard(boardNo);
 		
 		return "redirect:/list";
