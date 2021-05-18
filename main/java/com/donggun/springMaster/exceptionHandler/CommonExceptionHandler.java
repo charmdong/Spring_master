@@ -16,4 +16,5 @@ public class CommonExceptionHandler {
 	public String handleRuntimeException() {
 		return "error/runtimeException";
 	}
+	
 }
