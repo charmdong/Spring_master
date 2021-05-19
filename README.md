@@ -24,7 +24,9 @@
   3-1. AuthInterceptor: 로그인 여부 확인 <br/>
   3-2. MeasuringInterceptor: 요청 처리 시간 출력 (추후 AOP 적용시 제거) <br/><br/>
   
-4. JPA
+4. JPA <br />
+  4-1. Entity mapping <br />
+  4-2. Generator strategy 설정 <br />
 
 <br/>
 
