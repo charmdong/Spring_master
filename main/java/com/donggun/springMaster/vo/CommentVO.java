@@ -3,6 +3,8 @@ package com.donggun.springMaster.vo;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,7 +23,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Entity
 @Table(name="COMMENT")
 public class CommentVO {
-	@Id private String commentNo;	// PK
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) private String commentNo;	// PK
 	@NotNull @NotEmpty private String regId;
 	@NotNull @NotEmpty @Size(min=1, max=1000) private String content;
 	

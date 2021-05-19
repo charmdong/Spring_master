@@ -22,10 +22,10 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 
 @Entity
-@Table(name="User")
+@Table(name="USER")
 public class UserVO {
 	
-	@Id @NotNull @NotEmpty private String id;		// PK, FK
+	@Id @NotNull @NotEmpty private String id;
 	@NotNull @NotEmpty private String nickName;
 	@NotNull @NotEmpty private String password;
 	@NotNull @NotEmpty private String name;

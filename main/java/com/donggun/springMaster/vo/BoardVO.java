@@ -3,6 +3,8 @@ package com.donggun.springMaster.vo;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,7 +23,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name="BOARD")
 public class BoardVO {
 	
-	@Id @NotNull @NotEmpty private String boardNo;	// PK
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @NotNull @NotEmpty private String boardNo;	// PK
 	@NotNull @NotEmpty private String regId; 	// FK
 	
 	@Temporal(TemporalType.TIMESTAMP)
