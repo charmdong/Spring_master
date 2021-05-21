@@ -2,6 +2,7 @@ package com.donggun.springMaster.vo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -28,7 +29,7 @@ public class UserVO {
 	@Id @NotNull @NotEmpty private String id;
 	@NotNull @NotEmpty private String nickName;
 	@NotNull @NotEmpty private String password;
-	@NotNull @NotEmpty private String name;
+	@Column(name="name") @NotNull @NotEmpty private String userName;
 	@Email private String email;
 	@NotNull @NotEmpty private String phone;
 	private String homepage;
@@ -61,11 +62,11 @@ public class UserVO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getEmail() {
 		return email;
@@ -90,6 +91,24 @@ public class UserVO {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public RoleType getRoleType() {
+		return roleType;
+	}
+	public void setRoleType(RoleType roleType) {
+		this.roleType = roleType;
+	}
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 	
 }
