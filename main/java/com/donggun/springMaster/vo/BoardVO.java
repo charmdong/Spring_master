@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,6 +29,8 @@ public class BoardVO {
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
+	
+	@Lob
 	private String content;
 	private int likeCnt;
 	
@@ -60,6 +63,12 @@ public class BoardVO {
 	}
 	public void setLikeCnt(int likeCnt) {
 		this.likeCnt = likeCnt;
+	}
+	public String getBoardNo() {
+		return boardNo;
+	}
+	public void setBoardNo(String boardNo) {
+		this.boardNo = boardNo;
 	}
 	
 }
