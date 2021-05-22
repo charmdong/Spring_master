@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,6 +32,10 @@ public class CommentVO {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
 	
+	@ManyToOne
+	@JoinColumn(name="BOARD_NO")
+	private BoardVO board;
+	
 	public String getCommentNo() {
 		return commentNo;
 	}
@@ -53,6 +59,12 @@ public class CommentVO {
 	}
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+	}
+	public BoardVO getBoard() {
+		return board;
+	}
+	public void setBoard(BoardVO board) {
+		this.board = board;
 	}
 	
 }
