@@ -1,12 +1,15 @@
 package com.donggun.springMaster.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,6 +37,9 @@ public class UserVO {
 	@NotNull @NotEmpty private String phone;
 	private String homepage;
 	private String description;
+	
+	@OneToMany(mappedBy="user")
+	private List<BoardVO> boardList = new ArrayList<BoardVO>();
 	
 	@Enumerated(EnumType.STRING)
 	private RoleType roleType;
@@ -109,6 +115,12 @@ public class UserVO {
 	}
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
+	}
+	public List<BoardVO> getBoardList() {
+		return boardList;
+	}
+	public void setBoardList(List<BoardVO> boardList) {
+		this.boardList = boardList;
 	}
 	
 }
