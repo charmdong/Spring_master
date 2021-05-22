@@ -1,12 +1,17 @@
 package com.donggun.springMaster.vo;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,26 +30,26 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class BoardVO {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @NotNull @NotEmpty private String boardNo;	// PK
-	@NotNull @NotEmpty private String regId; 	// FK
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
+	
+	@ManyToOne
+	@JoinColumn(name="REG_USER")
+	private UserVO user;
+	
+	@OneToMany(mappedBy="board")
+	private List<CommentVO> commentList = new ArrayList<CommentVO>();
 	
 	@Lob
 	private String content;
 	private int likeCnt;
 	
-	public String getboardNo() {
+	public String getBoardNo() {
 		return boardNo;
 	}
-	public void setboardNo(String boardNo) {
+	public void setBoardNo(String boardNo) {
 		this.boardNo = boardNo;
-	}
-	public String getRegId() {
-		return regId;
-	}
-	public void setRegId(String regId) {
-		this.regId = regId;
 	}
 	public Date getRegDate() {
 		return regDate;
@@ -64,11 +69,17 @@ public class BoardVO {
 	public void setLikeCnt(int likeCnt) {
 		this.likeCnt = likeCnt;
 	}
-	public String getBoardNo() {
-		return boardNo;
+	public UserVO getUser() {
+		return user;
 	}
-	public void setBoardNo(String boardNo) {
-		this.boardNo = boardNo;
+	public void setUser(UserVO user) {
+		this.user = user;
+	}
+	public List<CommentVO> getCommentList() {
+		return commentList;
+	}
+	public void setCommentList(List<CommentVO> commentList) {
+		this.commentList = commentList;
 	}
 	
 }
