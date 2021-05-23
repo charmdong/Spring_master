@@ -65,6 +65,7 @@ public class CommentVO {
 	}
 	public void setBoard(BoardVO board) {
 		this.board = board;
+		board.getCommentList().add(this);
 	}
 	
 }

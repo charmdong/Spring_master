@@ -74,6 +74,7 @@ public class BoardVO {
 	}
 	public void setUser(UserVO user) {
 		this.user = user;
+		user.getBoardList().add(this);
 	}
 	public List<CommentVO> getCommentList() {
 		return commentList;
