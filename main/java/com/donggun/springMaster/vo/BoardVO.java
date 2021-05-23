@@ -73,6 +73,10 @@ public class BoardVO {
 		return user;
 	}
 	public void setUser(UserVO user) {
+		if(this.user != null) {
+			this.user.getBoardList().remove(this);
+		}
+		
 		this.user = user;
 		user.getBoardList().add(this);
 	}

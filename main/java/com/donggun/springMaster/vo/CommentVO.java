@@ -64,6 +64,10 @@ public class CommentVO {
 		return board;
 	}
 	public void setBoard(BoardVO board) {
+		if(this.board != null) {
+			this.board.getCommentList().remove(this);
+		}
+		
 		this.board = board;
 		board.getCommentList().add(this);
 	}
