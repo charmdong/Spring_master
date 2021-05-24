@@ -34,7 +34,7 @@ public class UserController {
 		LoginVO loginVO = new LoginVO();
 		
 		loginVO.setId(user.getId());
-		loginVO.setName(user.getName());
+		loginVO.setName(user.getUserName());
 		loginVO.setLoginDate(new Date());
 		// loginVO.setIsAdmin(userVO.getRoleType() == 0);
 		
