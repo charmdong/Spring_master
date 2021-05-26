@@ -26,6 +26,9 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+	<!-- 파일 다운로드를 위한 MultipartResolver 설정 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
