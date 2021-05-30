@@ -1,7 +1,9 @@
 package com.donggun.springMaster.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.donggun.springMaster.dao.UserDAO;
 import com.donggun.springMaster.service.UserService;
 import com.donggun.springMaster.vo.UserVO;
 
@@ -14,28 +16,33 @@ import com.donggun.springMaster.vo.UserVO;
 @Service
 public class UserServiceImpl implements UserService {
 
+	private final UserDAO userDao;
+	
+	@Autowired
+	public UserServiceImpl(UserDAO userDao) {
+		super();
+		this.userDao = userDao;
+	}
+	
 	@Override
 	public UserVO login(UserVO user) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		UserVO userInfo = userDao.getUserInfo(user.getId());
+		return userInfo;
 	}
 
 	@Override
 	public void registUserInfo(UserVO user) throws Exception {
-		// TODO Auto-generated method stub
-		
+		userDao.registUserInfo(user);
 	}
 
 	@Override
 	public void changeUserInfo(UserVO user) throws Exception {
-		// TODO Auto-generated method stub
-		
+		userDao.modifyUserInfo(user);
 	}
 
 	@Override
 	public void deleteUserInfo(UserVO user) throws Exception {
-		// TODO Auto-generated method stub
-		
+		userDao.deleteUserInfo(user.getId());
 	}
 	
 }

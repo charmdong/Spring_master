@@ -38,7 +38,7 @@ public class UserDAO {
 	 * @param userInfo
 	 * @throws Exception
 	 */
-	public void modifyUserInfo(String id, UserVO userInfo) throws Exception {
+	public void modifyUserInfo(UserVO userInfo) throws Exception {
 		;
 	}
 
