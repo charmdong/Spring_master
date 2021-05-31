@@ -2,6 +2,8 @@ package com.donggun.springMaster.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.donggun.springMaster.vo.BoardVO;
 
 /**
@@ -10,6 +12,7 @@ import com.donggun.springMaster.vo.BoardVO;
  * @since 2021.05.27.
  * @version 1.0
  */
+@Repository
 public class BoardDAO {
 
 	/**
@@ -43,7 +46,7 @@ public class BoardDAO {
 	 * @param boardNo
 	 * @param board
 	 */
-	public void modifyBoard(String boardNo, BoardVO board) {
+	public void modifyBoard(BoardVO board) {
 		;
 	}
 	
