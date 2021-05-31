@@ -1,5 +1,6 @@
 package com.donggun.springMaster.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.donggun.springMaster.service.impl.BoardServiceImpl;
 import com.donggun.springMaster.vo.BoardVO;
 
 /**
@@ -20,6 +22,15 @@ import com.donggun.springMaster.vo.BoardVO;
 @RequestMapping("/board")
 @Controller
 public class BoardController {
+	
+	private final BoardServiceImpl boardService;
+	
+	@Autowired
+	public BoardController(BoardServiceImpl boardService) {
+		super();
+		this.boardService = boardService;
+	}
+
 
 	/**
 	 * 전달된 아이디에 해당하는 사용자의 게시물 목록 조회
