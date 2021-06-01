@@ -35,7 +35,7 @@ public class BoardVO {
 	private Date regDate;
 	
 	@ManyToOne
-	@JoinColumn(name="REG_USER")
+	@JoinColumn(name="REG_ID")
 	private UserVO user;
 	
 	@OneToMany(mappedBy="board")

@@ -2,6 +2,9 @@ package com.donggun.springMaster.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.stereotype.Repository;
 
 import com.donggun.springMaster.vo.BoardVO;
@@ -14,6 +17,9 @@ import com.donggun.springMaster.vo.BoardVO;
  */
 @Repository
 public class BoardDAO {
+	
+	@PersistenceContext
+	EntityManager em;
 
 	/**
 	 * 게시글 조회
@@ -21,7 +27,7 @@ public class BoardDAO {
 	 * @return board
 	 */
 	public BoardVO getBoard(String boardNo) {
-		return null;
+		return em.find(BoardVO.class, boardNo);
 	}
 	
 	/**
@@ -30,7 +36,7 @@ public class BoardDAO {
 	 * @return
 	 */
 	public List<BoardVO> getBoardList(String id) {
-		return null;
+		return em.createQuery("select b from Board b where b.regId = :id", BoardVO.class).setParameter("id", id).getResultList();
 	}
 	
 	/**
@@ -38,7 +44,7 @@ public class BoardDAO {
 	 * @param board
 	 */
 	public void reigstBoard(BoardVO board) {
-		;
+		em.persist(board);
 	}
 	
 	/**
@@ -47,7 +53,9 @@ public class BoardDAO {
 	 * @param board
 	 */
 	public void modifyBoard(BoardVO board) {
-		;
+		BoardVO origin = em.find(BoardVO.class, board.getBoardNo());
+		
+		// TODO set info
 	}
 	
 	/**
@@ -55,6 +63,7 @@ public class BoardDAO {
 	 * @param boardNo
 	 */
 	public void deleteBoard(String boardNo) {
-		;
+		BoardVO board = em.find(BoardVO.class, boardNo);
+		em.remove(board);
 	}
 }
