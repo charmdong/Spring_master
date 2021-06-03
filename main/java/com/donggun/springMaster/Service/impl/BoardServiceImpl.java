@@ -36,7 +36,7 @@ public class BoardServiceImpl implements BoardService {
 	 * @throws Exception
 	 */
 	@Override
-	public BoardVO getBoardInfo(String boardNo) throws Exception {
+	public BoardVO getDetailBoardInfo(String boardNo) throws Exception {
 		return boardDao.getBoard(boardNo);
 	}
 

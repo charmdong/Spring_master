@@ -1,5 +1,7 @@
 package com.donggun.springMaster.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.donggun.springMaster.service.impl.BoardServiceImpl;
 import com.donggun.springMaster.vo.BoardVO;
+import com.donggun.springMaster.vo.CommentVO;
 
 /**
  * Board Controller
@@ -40,8 +43,15 @@ public class BoardController {
 	 */
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String getBoardList(@RequestParam(value="id", required=true) String id, Model model) {
-		// List<BoardVO> boardList = boardService.getBoardList();
-		// model.addAttribute("boardList", boardList);
+		List<BoardVO> boardList = null;
+		
+		try {
+			boardList = boardService.getBoardList(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("boardList", boardList);
 		
 		return "board/list";
 	}
@@ -53,11 +63,18 @@ public class BoardController {
 	 * @return detail.jsp
 	 */
 	@RequestMapping(value="/detail/{boardNo}", method=RequestMethod.GET)
-	public String getDetailBoard(@PathVariable String boardNo, Model model) {
-		// BoardVO board = boardService.getDetailBoard(boardNo);
-		// model.addAttribute("board", board);
-		// List<CommentVO> commentList = commentService.getCommentList(boardNo);
-		// model.addAttribute("commentList", commentList);
+	public String getDetailBoardInfo(@PathVariable String boardNo, Model model) {
+		BoardVO board = null;
+		
+		try {
+			board = boardService.getDetailBoardInfo(boardNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		List<CommentVO> commentList = board.getCommentList();
+		model.addAttribute("board", board);
+		model.addAttribute("commentList", commentList);
 		
 		return "board/detail";
 	}
@@ -69,7 +86,11 @@ public class BoardController {
 	 */
 	@RequestMapping(value="/delete", method=RequestMethod.DELETE)
 	public String deleteBoard(@RequestParam(value="boardNo", required=true) String boardNo) {
-		// boardService.deleteBoard(boardNo);
+		try {
+			boardService.deleteBoard(boardNo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "redirect:/list";
 	}
@@ -91,7 +112,11 @@ public class BoardController {
 	 */
 	@RequestMapping(value="/modify", method=RequestMethod.PUT)
 	public String modifyBoard(@RequestBody BoardVO board) {
-		// boardService.modifyBoard(board);
+		try {
+			boardService.modifyBoard(board);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return "redirect:/list";
 	}

@@ -12,7 +12,7 @@ import com.donggun.springMaster.vo.BoardVO;
  */
 public interface BoardService {
 
-	public BoardVO getBoardInfo(String boardNo) throws Exception;
+	public BoardVO getDetailBoardInfo(String boardNo) throws Exception;
 	
 	public List<BoardVO> getBoardList(String regId) throws Exception;
 	
