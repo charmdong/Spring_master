@@ -39,12 +39,18 @@ public class UserController {
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(@RequestBody UserVO user, HttpSession session) {
-		// UserVO userVO = userService.getUserInfo(user);
+		UserVO userInfo = null;
+		
+		try {
+			userInfo = userService.login(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		LoginVO loginVO = new LoginVO();
 		
-		loginVO.setId(user.getId());
-		loginVO.setName(user.getUserName());
+		loginVO.setId(userInfo.getId());
+		loginVO.setName(userInfo.getUserName());
 		loginVO.setLoginDate(new Date());
 		// loginVO.setIsAdmin(userVO.getRoleType() == 0);
 		
