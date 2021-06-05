@@ -60,7 +60,6 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(measuringInterceptor());
 		
 		registry.addInterceptor(authInterceptor())
-				.addPathPatterns("/user/**")
 				.addPathPatterns("/board/**");
 	}
 
