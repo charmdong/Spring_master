@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.donggun.springMaster.service.impl.BoardServiceImpl;
+import com.donggun.springMaster.service.BoardService;
 import com.donggun.springMaster.vo.BoardVO;
 import com.donggun.springMaster.vo.CommentVO;
 
@@ -26,10 +26,10 @@ import com.donggun.springMaster.vo.CommentVO;
 @Controller
 public class BoardController {
 	
-	private final BoardServiceImpl boardService;
+	private final BoardService boardService;
 	
 	@Autowired
-	public BoardController(BoardServiceImpl boardService) {
+	public BoardController(BoardService boardService) {
 		super();
 		this.boardService = boardService;
 	}
@@ -55,7 +55,7 @@ public class BoardController {
 		
 		return "board/list";
 	}
-	
+
 	/**
 	 * 게시물 상세 조회 
 	 * @param boardNo

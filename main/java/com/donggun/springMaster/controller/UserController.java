@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.donggun.springMaster.service.impl.UserServiceImpl;
+import com.donggun.springMaster.service.UserService;
 import com.donggun.springMaster.vo.LoginVO;
 import com.donggun.springMaster.vo.UserVO;
 
@@ -24,10 +24,10 @@ import com.donggun.springMaster.vo.UserVO;
 @Controller
 public class UserController {
 	
-	private final UserServiceImpl userService;
+	private final UserService userService;
 	
 	@Autowired
-	public UserController(UserServiceImpl userService) {
+	public UserController(UserService userService) {
 		super();
 		this.userService = userService;
 	}
