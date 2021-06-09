@@ -13,7 +13,7 @@
 
     <div id="buttonBox">
         <button id="btn_login" onclick="location.href='${pageContext.request.contextPath}/user/loginForm'">로그인</button>
-        <button id="btn_join" onclick="location.href='${pageContext.request.contextPath}/member/registForm'">회원가입</button>
+        <button id="btn_join" onclick="location.href='${pageContext.request.contextPath}/user/joinForm'">회원가입</button>
     </div>
 
 </body>
