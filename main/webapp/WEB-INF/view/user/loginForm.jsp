@@ -10,9 +10,13 @@
 	<div>
         <div id="loginContainer">
             <form action="${pageContext.request.contextPath}/user/login" method="get">
-                <input type="text" name="id" id="userId" placeholder="Input your ID">
-                <input type="password" name="password" id="userPwd">
-                <input type="submit" value="로그인">
+                <label for="">아이디</label>
+                <input type="text" name="id" id="userId" placeholder="Input your ID"><br/>
+
+                <label for="">패스워드</label>
+                <input type="password" name="password" id="userPwd"><br/>
+
+                <button type="submit">로그인</button>
             </form>
         </div>
     </div>
