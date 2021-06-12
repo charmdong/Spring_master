@@ -32,7 +32,7 @@ public class UserVO {
 	@Id @NotNull @NotEmpty private String id;
 	@NotNull @NotEmpty private String nickName;
 	@NotNull @NotEmpty private String password;
-	@Column(name="name") @NotNull @NotEmpty private String userName;
+	@NotNull @NotEmpty private String userName;
 	@Email private String email;
 	@NotNull @NotEmpty private String phone;
 	private String homepage;
