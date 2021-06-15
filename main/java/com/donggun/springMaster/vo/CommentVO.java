@@ -32,6 +32,9 @@ public class CommentVO {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date modDate;
+	
 	@ManyToOne
 	@JoinColumn(name="BOARD_NO")
 	private BoardVO board;
@@ -59,6 +62,12 @@ public class CommentVO {
 	}
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
+	}
+	public Date getModDate() {
+		return modDate;
+	}
+	public void setModDate(Date modDate) {
+		this.modDate = modDate;
 	}
 	public BoardVO getBoard() {
 		return board;
