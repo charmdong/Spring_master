@@ -44,6 +44,9 @@ public class BoardVO {
 	@OneToMany(mappedBy="board")
 	private List<CommentVO> commentList = new ArrayList<CommentVO>();
 	
+	@OneToMany(mappedBy="board")
+	private List<FileVO> fileList = new ArrayList<FileVO>();
+	
 	@Lob
 	private String content;
 	private int likeCnt;
@@ -94,6 +97,12 @@ public class BoardVO {
 	}
 	public void setCommentList(List<CommentVO> commentList) {
 		this.commentList = commentList;
+	}
+	public List<FileVO> getFileList() {
+		return fileList;
+	}
+	public void setFileList(List<FileVO> fileList) {
+		this.fileList = fileList;
 	}
 	
 }
