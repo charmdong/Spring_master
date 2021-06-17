@@ -37,6 +37,7 @@ public class UserController {
 	 * @param user
 	 * @return main.jsp
 	 */
+	@SuppressWarnings("unlikely-arg-type")
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(@RequestBody UserVO user, HttpSession session) {
 		UserVO userInfo = null;
@@ -52,7 +53,7 @@ public class UserController {
 		loginVO.setId(userInfo.getId());
 		loginVO.setName(userInfo.getUserName());
 		loginVO.setLoginDate(new Date());
-		// loginVO.setIsAdmin(userVO.getRoleType() == 0);
+		loginVO.setIsAdmin(userInfo.getRoleType().equals(0));
 		
 		session.setAttribute("loginInfo", loginVO);
 		
