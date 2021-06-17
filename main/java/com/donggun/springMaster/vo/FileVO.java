@@ -31,7 +31,7 @@ public class FileVO {
 	private String fileName; // CPK with boardNo
 	private String filePath;
 	@Size(max = 1024000)
-	private String fileSize;
+	private long fileSize;
 
 	public String getFileNo() {
 		return fileNo;
@@ -70,11 +70,11 @@ public class FileVO {
 		this.filePath = filePath;
 	}
 
-	public String getFileSize() {
+	public long getFileSize() {
 		return fileSize;
 	}
 
-	public void setFileSize(String fileSize) {
+	public void setFileSize(long fileSize) {
 		this.fileSize = fileSize;
 	}
 
