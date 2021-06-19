@@ -7,8 +7,8 @@ import org.junit.Test;
 public class DBConnectionTest {
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/spring_master?useSSL=false&serverTimezone=UTC";
-	private static final String USER = "donggun";
-	private static final String PW = "donggun";
+	private static final String USER = "";
+	private static final String PW = "";
 
 	@Test
 	public void testConnection() throws Exception{
