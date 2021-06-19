@@ -12,6 +12,8 @@ public interface UserService {
 	
 	public UserVO login(UserVO user) throws Exception;
 	
+	public UserVO getUserInfo(String userId) throws Exception;
+	
 	public void registUserInfo(UserVO user) throws Exception;
 	
 	public void changeUserInfo(UserVO user) throws Exception;
