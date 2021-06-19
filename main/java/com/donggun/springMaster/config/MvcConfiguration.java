@@ -61,7 +61,8 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(measuringInterceptor());
 		
 		registry.addInterceptor(authInterceptor())
-				.addPathPatterns("/board/**");
+				.addPathPatterns("/board/**")
+				.addPathPatterns("/user/detail");
 	}
 
 	@Bean
