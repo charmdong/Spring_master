@@ -9,7 +9,7 @@
 <body>
 	<div>
         <div id="loginContainer">
-            <form action="${pageContext.request.contextPath}/user/login" method="get">
+            <form action="${pageContext.request.contextPath}/user/login" method="post">
                 <label for="">아이디</label>
                 <input type="text" name="id" id="userId" placeholder="Input your ID"><br/>
 
