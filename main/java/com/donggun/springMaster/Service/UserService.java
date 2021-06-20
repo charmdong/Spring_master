@@ -16,7 +16,7 @@ public interface UserService {
 	
 	public void registUserInfo(UserVO user) throws Exception;
 	
-	public void changeUserInfo(UserVO user) throws Exception;
+	public void modifyUserInfo(UserVO user) throws Exception;
 	
-	public void deleteUserInfo(UserVO user) throws Exception;
+	public void deleteUserInfo(String userId) throws Exception;
 }

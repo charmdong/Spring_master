@@ -41,13 +41,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void changeUserInfo(UserVO user) throws Exception {
+	public void modifyUserInfo(UserVO user) throws Exception {
 		userDao.modifyUserInfo(user);
 	}
 
 	@Override
-	public void deleteUserInfo(UserVO user) throws Exception {
-		userDao.deleteUserInfo(user.getId());
+	public void deleteUserInfo(String userId) throws Exception {
+		userDao.deleteUserInfo(userId);
 	}
 	
 }
