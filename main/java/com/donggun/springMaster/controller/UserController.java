@@ -93,4 +93,47 @@ public class UserController {
 		
 		return "detail";
 	}
+	
+	/**
+	 * 사용자 정보 등록
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value="/regist", method=RequestMethod.POST)
+	public String registUserInfo(@RequestBody UserVO user) {
+		try {
+			userService.registUserInfo(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/index";
+	}
+	
+	/**
+	 * 사용자 정보 수정
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value="/modify", method=RequestMethod.PUT)
+	public String modifyUserInfo(@RequestBody UserVO user) {
+		try {
+			userService.modifyUserInfo(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "detail";
+	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.DELETE)
+	public String deleteUserInfo(@RequestParam String userId) {
+		try {
+			userService.deleteUserInfo(userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/index";
+	}
 }
