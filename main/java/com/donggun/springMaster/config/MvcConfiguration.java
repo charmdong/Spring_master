@@ -2,6 +2,7 @@ package com.donggun.springMaster.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -22,6 +23,7 @@ import com.donggun.springMaster.interceptor.MeasuringInterceptor;
 
 @Configuration
 @EnableWebMvc
+@EnableJpaRepositories(basePackages="com.donggun.springMaster.dao")
 public class MvcConfiguration extends WebMvcConfigurerAdapter {
 
 	/**
