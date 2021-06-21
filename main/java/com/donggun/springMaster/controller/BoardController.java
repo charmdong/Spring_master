@@ -67,7 +67,7 @@ public class BoardController {
 		BoardVO board = null;
 		
 		try {
-			board = boardService.getDetailBoardInfo(boardNo);
+			board = boardService.getBoardInfo(boardNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -113,7 +113,7 @@ public class BoardController {
 	@RequestMapping(value="/modify", method=RequestMethod.PUT)
 	public String modifyBoard(@RequestBody BoardVO board) {
 		try {
-			boardService.modifyBoard(board);
+			boardService.saveBoard(board);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -99,35 +99,19 @@ public class UserController {
 	}
 	
 	/**
-	 * 사용자 정보 등록
+	 * 사용자 정보 등록 및 수정
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping(value="/regist", method=RequestMethod.POST)
-	public String registUserInfo(@RequestBody UserVO user) {
+	@RequestMapping(value="/save", method=RequestMethod.POST)
+	public String saveUserInfo(@RequestBody UserVO user) {
 		try {
-			userService.registUserInfo(user);
+			userService.saveUserInfo(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		return "redirect:/";
-	}
-	
-	/**
-	 * 사용자 정보 수정
-	 * @param user
-	 * @return
-	 */
-	@RequestMapping(value="/modify", method=RequestMethod.PUT)
-	public String modifyUserInfo(@RequestBody UserVO user) {
-		try {
-			userService.modifyUserInfo(user);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return "user/detail";
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.DELETE)
