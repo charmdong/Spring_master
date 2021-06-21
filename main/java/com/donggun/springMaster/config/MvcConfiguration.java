@@ -23,7 +23,6 @@ import com.donggun.springMaster.interceptor.MeasuringInterceptor;
 
 @Configuration
 @EnableWebMvc
-@EnableJpaRepositories(basePackages="com.donggun.springMaster.dao")
 public class MvcConfiguration extends WebMvcConfigurerAdapter {
 
 	/**
