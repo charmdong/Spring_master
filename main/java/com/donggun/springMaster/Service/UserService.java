@@ -10,7 +10,7 @@ import com.donggun.springMaster.vo.UserVO;
  */
 public interface UserService {
 	
-	public UserVO login(UserVO user) throws Exception;
+	public UserVO login(String userId, String password) throws Exception;
 	
 	public UserVO getUserInfo(String userId) throws Exception;
 	

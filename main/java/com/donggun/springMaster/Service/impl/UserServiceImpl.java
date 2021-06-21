@@ -25,14 +25,20 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public UserVO getUserInfo(String userId) throws Exception {
-		return userDao.getUserInfo(userId);
+	public UserVO login(String userId, String password) throws Exception {
+		UserVO userInfo = userDao.getUserInfo(userId);
+		
+		if(!password.equals(userInfo.getPassword())) {
+			return null;
+		}
+		else {
+			return userInfo;
+		}
 	}
 
 	@Override
-	public UserVO login(UserVO user) throws Exception {
-		UserVO userInfo = userDao.getUserInfo(user.getId());
-		return userInfo;
+	public UserVO getUserInfo(String userId) throws Exception {
+		return userDao.getUserInfo(userId);
 	}
 
 	@Override

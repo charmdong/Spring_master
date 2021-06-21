@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.donggun.springMaster.service.UserService;
 import com.donggun.springMaster.vo.LoginVO;
+import com.donggun.springMaster.vo.RoleType;
 import com.donggun.springMaster.vo.UserVO;
 
 /**
@@ -39,15 +40,18 @@ public class UserController {
 	 * @param user
 	 * @return main.jsp
 	 */
-	@SuppressWarnings("unlikely-arg-type")
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(@RequestBody UserVO user, HttpSession session) {
+	public String login(@RequestParam String userId, @RequestParam String password, HttpSession session) {
 		UserVO userInfo = null;
 		
 		try {
-			userInfo = userService.login(user);
+			userInfo = userService.login(userId, password);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		
+		if(userInfo == null) {
+			return "redirect:/";
 		}
 		
 		LoginVO loginVO = new LoginVO();
@@ -55,7 +59,7 @@ public class UserController {
 		loginVO.setId(userInfo.getId());
 		loginVO.setName(userInfo.getUserName());
 		loginVO.setLoginDate(new Date());
-		loginVO.setIsAdmin(userInfo.getRoleType().equals(0));
+		loginVO.setIsAdmin(RoleType.ADMIN.equals(userInfo.getRoleType()));
 		
 		session.setAttribute("loginInfo", loginVO);
 		
@@ -71,7 +75,7 @@ public class UserController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		
-		return "index";
+		return "redirect:/";
 	}
 	
 	/**
@@ -91,7 +95,7 @@ public class UserController {
 		}
 		model.addAttribute("userInfo", userInfo);
 		
-		return "detail";
+		return "user/detail";
 	}
 	
 	/**
@@ -107,7 +111,7 @@ public class UserController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/index";
+		return "redirect:/";
 	}
 	
 	/**
@@ -123,7 +127,7 @@ public class UserController {
 			e.printStackTrace();
 		}
 		
-		return "detail";
+		return "user/detail";
 	}
 	
 	@RequestMapping(value="/delete", method=RequestMethod.DELETE)
@@ -134,6 +138,6 @@ public class UserController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/index";
+		return "redirect:/";
 	}
 }
