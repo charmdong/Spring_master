@@ -1,5 +1,7 @@
 package com.donggun.springMaster.service;
 
+import java.util.List;
+
 import com.donggun.springMaster.vo.UserVO;
 
 /**
@@ -14,9 +16,9 @@ public interface UserService {
 	
 	public UserVO getUserInfo(String userId) throws Exception;
 	
-	public void registUserInfo(UserVO user) throws Exception;
+	public List<UserVO> getUserListByName(String userName) throws Exception;
 	
-	public void modifyUserInfo(UserVO user) throws Exception;
+	public void saveUserInfo(UserVO userInfo) throws Exception;
 	
 	public void deleteUserInfo(String userId) throws Exception;
 }

@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.donggun.springMaster.dao.BoardDAO;
+import com.donggun.springMaster.repository.BoardRepository;
+import com.donggun.springMaster.repository.UserRepository;
 import com.donggun.springMaster.service.BoardService;
 import com.donggun.springMaster.vo.BoardVO;
+import com.donggun.springMaster.vo.UserVO;
 
 /**
  * Board 서비스 구현 객체
@@ -20,12 +22,14 @@ import com.donggun.springMaster.vo.BoardVO;
 @Service
 public class BoardServiceImpl implements BoardService {
 
-	private final BoardDAO boardDao;
-
+	private final BoardRepository boardRepository;
+	private final UserRepository userRepository;
+	
 	@Autowired
-	public BoardServiceImpl(BoardDAO boardDao) {
+	public BoardServiceImpl(BoardRepository boardRepository, UserRepository userRepository) {
 		super();
-		this.boardDao = boardDao;
+		this.boardRepository = boardRepository;
+		this.userRepository = userRepository;
 	}
 
 	/**
@@ -36,8 +40,8 @@ public class BoardServiceImpl implements BoardService {
 	 * @throws Exception
 	 */
 	@Override
-	public BoardVO getDetailBoardInfo(String boardNo) throws Exception {
-		return boardDao.getBoard(boardNo);
+	public BoardVO getBoardInfo(String boardNo) throws Exception {
+		return boardRepository.findOne(boardNo);
 	}
 
 	/**
@@ -49,32 +53,24 @@ public class BoardServiceImpl implements BoardService {
 	 */
 	@Override
 	public List<BoardVO> getBoardList(String regId) throws Exception {
-		List<BoardVO> boardList = boardDao.getBoardList(regId);
+		UserVO user = userRepository.findOne(regId);
+		
+		List<BoardVO> boardList = boardRepository.findByUser(user);
 		
 		return boardList;
 	}
 
 	/**
-	 * 게시글 등록
+	 * 게시글 등록 및 수정
 	 * 
 	 * @param board
 	 * @throws Exception
 	 */
 	@Override
-	public void registBoard(BoardVO board) throws Exception {
-		boardDao.reigstBoard(board);
+	public void saveBoard(BoardVO board) throws Exception {
+		boardRepository.save(board);
 	}
 
-	/**
-	 * 게시글 수정
-	 * 
-	 * @param board
-	 * @throws Exception
-	 */
-	@Override
-	public void modifyBoard(BoardVO board) throws Exception {
-		boardDao.modifyBoard(board);
-	}
 
 	/**
 	 * 게시글 삭제
@@ -84,7 +80,7 @@ public class BoardServiceImpl implements BoardService {
 	 */
 	@Override
 	public void deleteBoard(String boardNo) throws Exception {
-		boardDao.deleteBoard(boardNo);
+		boardRepository.delete(boardNo);
 	}
 	
 }

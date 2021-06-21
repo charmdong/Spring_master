@@ -12,13 +12,11 @@ import com.donggun.springMaster.vo.BoardVO;
  */
 public interface BoardService {
 
-	public BoardVO getDetailBoardInfo(String boardNo) throws Exception;
+	public BoardVO getBoardInfo(String boardNo) throws Exception;
 	
 	public List<BoardVO> getBoardList(String regId) throws Exception;
 	
-	public void registBoard(BoardVO board) throws Exception;
-	
-	public void modifyBoard(BoardVO board) throws Exception;
+	public void saveBoard(BoardVO board) throws Exception;
 	
 	public void deleteBoard(String boardNo) throws Exception;
 }

@@ -1,9 +1,11 @@
 package com.donggun.springMaster.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.donggun.springMaster.dao.UserDAO;
+import com.donggun.springMaster.repository.UserRepository;
 import com.donggun.springMaster.service.UserService;
 import com.donggun.springMaster.vo.UserVO;
 
@@ -16,17 +18,17 @@ import com.donggun.springMaster.vo.UserVO;
 @Service
 public class UserServiceImpl implements UserService {
 
-	private final UserDAO userDao;
+	private final UserRepository userRepository;
 	
 	@Autowired
-	public UserServiceImpl(UserDAO userDao) {
+	public UserServiceImpl(UserRepository userRepository) {
 		super();
-		this.userDao = userDao;
+		this.userRepository = userRepository;
 	}
-	
+
 	@Override
 	public UserVO login(String userId, String password) throws Exception {
-		UserVO userInfo = userDao.getUserInfo(userId);
+		UserVO userInfo = userRepository.findOne(userId);
 		
 		if(!password.equals(userInfo.getPassword())) {
 			return null;
@@ -38,22 +40,22 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserVO getUserInfo(String userId) throws Exception {
-		return userDao.getUserInfo(userId);
+		return userRepository.findOne(userId);
+	}
+	
+	@Override
+	public List<UserVO> getUserListByName(String userName) throws Exception {
+		return userRepository.findByUserName(userName);
 	}
 
 	@Override
-	public void registUserInfo(UserVO user) throws Exception {
-		userDao.registUserInfo(user);
-	}
-
-	@Override
-	public void modifyUserInfo(UserVO user) throws Exception {
-		userDao.modifyUserInfo(user);
+	public void saveUserInfo(UserVO userInfo) throws Exception {
+		userRepository.save(userInfo);
 	}
 
 	@Override
 	public void deleteUserInfo(String userId) throws Exception {
-		userDao.deleteUserInfo(userId);
+		userRepository.delete(userId);
 	}
 	
 }
