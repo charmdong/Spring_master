@@ -2,7 +2,6 @@ package com.donggun.springMaster.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -11,6 +10,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.donggun.springMaster.interceptor.AuthInterceptor;
+import com.donggun.springMaster.interceptor.LoginInterceptor;
 import com.donggun.springMaster.interceptor.MeasuringInterceptor;
 
 /**
@@ -61,6 +61,11 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(measuringInterceptor());
 		
+		registry.addInterceptor(loginInterceptor())
+				.addPathPatterns("/**")
+				.excludePathPatterns("/index")
+				.excludePathPatterns("/user/loginForm");
+		
 		registry.addInterceptor(authInterceptor())
 				.addPathPatterns("/board/**")
 				.addPathPatterns("/user/detail");
@@ -74,5 +79,10 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 	@Bean
 	public AuthInterceptor authInterceptor() {
 		return new AuthInterceptor();
+	}
+	
+	@Bean
+	public LoginInterceptor loginInterceptor() {
+		return new LoginInterceptor();
 	}
 }
