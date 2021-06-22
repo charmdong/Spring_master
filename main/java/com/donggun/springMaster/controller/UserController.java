@@ -51,7 +51,7 @@ public class UserController {
 		}
 		
 		if(userInfo == null) {
-			return "redirect:/";
+			return "redirect:/user/loginForm";
 		}
 		
 		LoginVO loginVO = new LoginVO();
@@ -114,6 +114,11 @@ public class UserController {
 		return "redirect:/";
 	}
 	
+	/**
+	 * 사용자 정보 삭제
+	 * @param userId
+	 * @return
+	 */
 	@RequestMapping(value="/delete", method=RequestMethod.DELETE)
 	public String deleteUserInfo(@RequestParam String userId) {
 		try {
