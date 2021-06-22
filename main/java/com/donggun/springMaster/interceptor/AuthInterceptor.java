@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.donggun.springMaster.vo.LoginVO;
+
 /**
  * 권한 여부 확인 인터셉터
  * @author donggun.Chung
@@ -18,19 +20,16 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
+		LoginVO loginInfo = (LoginVO) session.getAttribute("loginInfo");
 		
-		if(session == null) {
-			response.sendRedirect("/index");
-			return false;
-		}
-		
-		if(session.getAttribute("isLogin") == null) {
-			response.sendRedirect("/index");
-			return false;
+		if(!loginInfo.getIsAdmin()) {
+			String userId = request.getParameter("userId");
+			if(!loginInfo.getId().equals(userId)) {
+				return false;
+			}
 		}
 		
 		return true;
 	}
-
 	
 }
