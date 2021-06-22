@@ -1,5 +1,6 @@
 package com.donggun.springMaster.vo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,7 @@ import javax.validation.constraints.Size;
 public class FileVO {
 
 	@Id
+	@Column(name="FILE_NO")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String fileNo;
 
@@ -28,8 +30,13 @@ public class FileVO {
 	@JoinColumn(name = "BOARD_NO")
 	private BoardVO board;
 
-	private String fileName; // CPK with boardNo
+	@Column(name="FILE_NAME")
+	private String fileName;
+	
+	@Column(name="FILE_PATH")
 	private String filePath;
+	
+	@Column(name="FILE_SIZE")
 	@Size(max = 1024000)
 	private long fileSize;
 

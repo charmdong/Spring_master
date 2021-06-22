@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,88 +22,113 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * 게시글 정보 VO
+ * 
  * @author donggun.Chung
  * @since 2021.04.27.
  * @version 1.0
  */
 @Entity
-@Table(name="BOARD")
+@Table(name = "BOARD")
 public class BoardVO {
-	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) @NotNull @NotEmpty private String boardNo;	// PK
-	
+
+	@Id
+	@Column(name="BOARD_NO")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
+	@NotEmpty
+	private String boardNo; // PK
+
+	@Column(name="REG_DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
-	
+
+	@Column(name="MOD_DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modDate;
-	
+
 	@ManyToOne
-	@JoinColumn(name="REG_ID")
+	@JoinColumn(name = "REG_ID")
 	private UserVO user;
-	
-	@OneToMany(mappedBy="board")
+
+	@OneToMany(mappedBy = "board")
 	private List<CommentVO> commentList = new ArrayList<CommentVO>();
-	
-	@OneToMany(mappedBy="board")
+
+	@OneToMany(mappedBy = "board")
 	private List<FileVO> fileList = new ArrayList<FileVO>();
-	
+
 	@Lob
 	private String content;
-	private int likeCnt;
 	
+	@Column(name="LIKE_CNT")
+	private int likeCnt;
+
 	public String getBoardNo() {
 		return boardNo;
 	}
+
 	public void setBoardNo(String boardNo) {
 		this.boardNo = boardNo;
 	}
+
 	public Date getRegDate() {
 		return regDate;
 	}
+
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
+
 	public Date getModDate() {
 		return modDate;
 	}
+
 	public void setModDate(Date modDate) {
 		this.modDate = modDate;
 	}
+
 	public String getContent() {
 		return content;
 	}
+
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 	public int getLikeCnt() {
 		return likeCnt;
 	}
+
 	public void setLikeCnt(int likeCnt) {
 		this.likeCnt = likeCnt;
 	}
+
 	public UserVO getUser() {
 		return user;
 	}
+
 	public void setUser(UserVO user) {
-		if(this.user != null) {
+		if (this.user != null) {
 			this.user.getBoardList().remove(this);
 		}
-		
+
 		this.user = user;
 		user.getBoardList().add(this);
 	}
+
 	public List<CommentVO> getCommentList() {
 		return commentList;
 	}
+
 	public void setCommentList(List<CommentVO> commentList) {
 		this.commentList = commentList;
 	}
+
 	public List<FileVO> getFileList() {
 		return fileList;
 	}
+
 	public void setFileList(List<FileVO> fileList) {
 		this.fileList = fileList;
 	}
-	
+
 }
