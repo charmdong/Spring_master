@@ -41,7 +41,7 @@ public class UserController {
 	 * @return main.jsp
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(@RequestParam String userId, @RequestParam String password, HttpSession session) {
+	public String login(@RequestParam String userId, @RequestParam String password, HttpSession session, Model model) {
 		UserVO userInfo = null;
 		
 		try {
@@ -51,7 +51,9 @@ public class UserController {
 		}
 		
 		if(userInfo == null) {
-			return "redirect:/user/loginForm";
+			model.addAttribute("resultCode", "FAIL");
+			model.addAttribute("errorMsg", "로그인에 실패했습니다. 아이디와 패스워드를 확인해주세요.");
+			return "user/loginForm";
 		}
 		
 		LoginVO loginVO = new LoginVO();

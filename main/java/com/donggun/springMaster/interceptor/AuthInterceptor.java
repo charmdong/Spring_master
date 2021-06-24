@@ -21,7 +21,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		HttpSession session = request.getSession();
 		LoginVO loginInfo = (LoginVO) session.getAttribute("loginInfo");
-		
+		System.out.println(loginInfo);
 		if(!loginInfo.getIsAdmin()) {
 			String userId = request.getParameter("userId");
 			if(!loginInfo.getId().equals(userId)) {

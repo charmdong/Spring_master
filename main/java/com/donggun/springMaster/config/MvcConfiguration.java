@@ -59,7 +59,8 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(measuringInterceptor());
+		registry.addInterceptor(measuringInterceptor())
+				.addPathPatterns("/**");
 		
 		registry.addInterceptor(loginInterceptor())
 				.addPathPatterns("/**")
@@ -67,7 +68,6 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 				.excludePathPatterns("/user/loginForm");
 		
 		registry.addInterceptor(authInterceptor())
-				.addPathPatterns("/board/**")
 				.addPathPatterns("/user/detail");
 	}
 
