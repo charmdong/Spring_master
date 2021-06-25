@@ -170,4 +170,12 @@ public class UserVO {
 		this.boardList = boardList;
 	}
 
+	@Override
+	public String toString() {
+		return "UserVO [id=" + id + ", nickName=" + nickName + ", password=" + password + ", userName=" + userName
+				+ ", email=" + email + ", phone=" + phone + ", homepage=" + homepage + ", description=" + description
+				+ ", boardList=" + boardList + ", roleType=" + roleType + ", regDate=" + regDate + ", modDate="
+				+ modDate + "]";
+	}
+	
 }
