@@ -65,7 +65,8 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(loginInterceptor())
 				.addPathPatterns("/**")
 				.excludePathPatterns("/index")
-				.excludePathPatterns("/user/loginForm");
+				.excludePathPatterns("/user/loginForm")
+				.excludePathPatterns("/user/joinForm");
 		
 		registry.addInterceptor(authInterceptor())
 				.addPathPatterns("/user/detail");
