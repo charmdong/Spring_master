@@ -9,12 +9,12 @@
 </head>
 <body>
     <div id="form_container">
-        <form action="" id="joinForm" action="${pageContext.request.contextPath}/user/join">
+        <form id="joinForm" action="${pageContext.request.contextPath}/user/save" method="POST">
             <span>성명</span>
             <input type="text" name="userName" maxlength="8" minlength="2"/><br/>
 
             <span>닉네임</span>
-            <input type="text" name="nickName"/ maxlength="8" minlength="2"><br/>
+            <input type="text" name="nickName" maxlength="8" minlength="2"/><br/>
 
             <span>아이디</span>
             <input type="text" name="id"/><br/>
@@ -37,23 +37,12 @@
             <span>자기소개</span>
             <textarea name="description" cols="30" rows="10"></textarea>
 
-            <button id="submit_btn" type="button">가입하기</button>
+            <button id="submit_btn" type="button" onclick="validateForm();">가입하기</button>
         </form>
     </div>
 
     <script>
-        let submitBtn;
-        
-        window.addEventListener("DOMContentLoaded", function() {
-            submitBtn = document.querySelector('#submit_btn');
-            setEvent();
-        });
-
-        function setEvent() {
-            submitBtn.addEventListener("click", function() {
-                validateForm();
-            });
-        };
+        let joinForm = document.getElementById("joinForm");
 
         function validateForm() {
             if(!validatePassword()) {
@@ -61,13 +50,13 @@
                 return false;
             }
 
-            submitBtn.submit();
+            joinForm.submit();
         };
 
         function validatePassword() {
-            const password = document.getElementsByName("password")[0];
-            const confirmPassword = document.getElementsByName("confirmPassword")[0];
-
+            const password = document.getElementsByName("password")[0].innerText;
+            const confirmPassword = document.getElementsByName("confirmPassword")[0].innerText;
+            
             return password === confirmPassword;
         };
 
