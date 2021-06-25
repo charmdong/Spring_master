@@ -106,14 +106,15 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public String saveUserInfo(@RequestBody UserVO user) {
+	public String saveUserInfo(UserVO user) {
+		System.out.println(user);
 		try {
 			userService.saveUserInfo(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		return "redirect:/";
+		return "/index";
 	}
 	
 	/**
