@@ -56,20 +56,14 @@ public class UserVO {
 	@OneToMany(mappedBy = "user")
 	private List<BoardVO> boardList = new ArrayList<BoardVO>();
 
-	@NotNull
-	@NotEmpty
 	@Column(name="ROLE_TYPE")
 	@Enumerated(EnumType.STRING)
 	private RoleType roleType;
 
-	@NotNull
-	@NotEmpty
 	@Column(name="REG_DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date regDate;
 
-	@NotNull
-	@NotEmpty
 	@Column(name="MOD_DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date modDate;
