@@ -50,7 +50,16 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void saveUserInfo(UserVO userInfo) throws Exception {
-		userRepository.save(userInfo);
+		UserVO origin = userRepository.findOne(userInfo.getId());
+		
+		origin.setNickName(userInfo.getNickName());
+		origin.setUserName(userInfo.getUserName());
+		origin.setEmail(userInfo.getEmail());
+		origin.setPhone(userInfo.getPhone());
+		origin.setHomepage(userInfo.getHomepage());
+		origin.setDescription(userInfo.getDescription());
+		
+		userRepository.save(origin);
 	}
 
 	@Override
