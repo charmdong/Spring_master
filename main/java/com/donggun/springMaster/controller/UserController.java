@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -101,6 +101,27 @@ public class UserController {
 	}
 	
 	/**
+	 * 사용자 정보 수정
+	 * @param userInfo
+	 * @return
+	 */
+	@RequestMapping(value="/modify")
+	public String modifyForm(Model model, HttpSession session) {
+		LoginVO loginInfo = (LoginVO) session.getAttribute("loginInfo");
+		String userId = loginInfo.getId();
+		UserVO userInfo = null;
+		
+		try {
+			userInfo = userService.getUserInfo(userId);
+			model.addAttribute("userInfo", userInfo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "user/modifyForm";
+	}
+	
+	/**
 	 * 사용자 정보 등록 및 수정
 	 * @param user
 	 * @return
@@ -108,6 +129,7 @@ public class UserController {
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String saveUserInfo(UserVO user) {
 		System.out.println(user);
+		
 		try {
 			userService.saveUserInfo(user);
 		} catch (Exception e) {
