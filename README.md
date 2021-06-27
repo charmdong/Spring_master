@@ -17,17 +17,21 @@
 1. 커맨드 객체(DTO, VO)에 대한 값 검증 <br/>
   1-1. Validator 인터페이스를 활용한 값 검증 및 에러 코드 설정 (Errors) <br/>
   1-2. MessageSource를 통한 에러 코드 -> 에러 메시지 매핑 <br/>
-  1-3. @Valid, @InitBinder 어노테이션 적용을 통한 커맨드 객체 값 검증 <br/><br/>
+  1-3. @Valid, @InitBinder 어노테이션 적용을 통한 커맨드 객체 값 검증 <br/>
+  <br/>
 2. 세션 값 관리 <br/>
-  2-1. @SessionAttributes, @ModelAttribute를 사용한 세션 객체 설정, SessionStatus.setComplete()를 통한 세션 객체 제거 <br/><br/>
+  2-1. @SessionAttributes, @ModelAttribute를 사용한 세션 객체 설정, SessionStatus.setComplete()를 통한 세션 객체 제거 <br/>
+  <br/>
 3. Interceptor를 통한 요청 처리 중재 <br/>
   3-1. AuthInterceptor: 로그인 여부 확인 <br/>
-  3-2. MeasuringInterceptor: 요청 처리 시간 출력 (추후 AOP 적용시 제거) <br/><br/>
+  3-2. MeasuringInterceptor: 요청 처리 시간 출력 (추후 AOP 적용시 제거) <br/>
+  <br/>
   
 4. JPA <br />
   4-1. Entity mapping <br />
   4-2. Validator 설정 <br/>
   4-3. Generator strategy 설정 <br />
+  <br/>
 5. log4j를 통한 로깅 설정 <br/>
 
 <br/>
