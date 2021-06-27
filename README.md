@@ -1,7 +1,7 @@
 # Spring 학습용 프로젝트 (2021.04.13 ~ )
 ## 학습 목표
 * Spring의 MVC, AOP, JPA, Security, Unit Test, Log 등의 개념을 단계적으로 적용해 전반적인 Spring의 구조 이해를 위함.
-* 위와 같은 개념들을 적용하여 SNS 웹 사이트 개발을 하고자 함.
+* 위와 같은 개념들을 적용하여 게시판 만들기
 * 1일 1커밋 운동을 지향하며 실천하기 위함.
 <br/><br/>
 
@@ -26,7 +26,9 @@
   
 4. JPA <br />
   4-1. Entity mapping <br />
-  4-2. Generator strategy 설정 <br />
+  4-2. Validator 설정 <br/>
+  4-3. Generator strategy 설정 <br />
+5. log4j를 통한 로깅 설정 <br/>
 
 <br/>
 
