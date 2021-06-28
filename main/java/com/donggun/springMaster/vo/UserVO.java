@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -34,23 +35,30 @@ public class UserVO {
 	@NotNull
 	@NotEmpty
 	private String id;
+	
 	@NotNull
 	@NotEmpty
 	@Column(name="NICK_NAME")
 	private String nickName;
+	
 	@NotNull
 	@NotEmpty
 	private String password;
+	
 	@NotNull
 	@NotEmpty
 	@Column(name="USER_NAME")
 	private String userName;
+	
 	@Email
 	private String email;
+	
 	@NotNull
 	@NotEmpty
 	private String phone;
 	private String homepage;
+	
+	@Lob
 	private String description;
 
 	@OneToMany(mappedBy = "user")
@@ -168,7 +176,7 @@ public class UserVO {
 	public String toString() {
 		return "UserVO [id=" + id + ", nickName=" + nickName + ", password=" + password + ", userName=" + userName
 				+ ", email=" + email + ", phone=" + phone + ", homepage=" + homepage + ", description=" + description
-				+ ", boardList=" + boardList + ", roleType=" + roleType + ", regDate=" + regDate + ", modDate="
+				+ ", roleType=" + roleType + ", regDate=" + regDate + ", modDate="
 				+ modDate + "]";
 	}
 	
