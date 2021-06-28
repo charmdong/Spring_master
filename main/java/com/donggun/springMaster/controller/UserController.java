@@ -96,7 +96,7 @@ public class UserController {
 			e.printStackTrace();
 		}
 		model.addAttribute("userInfo", userInfo);
-		
+		System.out.println(userInfo);
 		return "user/detail";
 	}
 	
@@ -128,7 +128,6 @@ public class UserController {
 	 */
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String saveUserInfo(UserVO user) {
-		System.out.println(user);
 		
 		try {
 			userService.saveUserInfo(user);
@@ -136,7 +135,7 @@ public class UserController {
 			e.printStackTrace();
 		}
 		
-		return "/index";
+		return "/main";
 	}
 	
 	/**
