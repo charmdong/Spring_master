@@ -15,8 +15,7 @@
             <label>이메일:</label><input type="text" name="email" value="${userInfo.email}" readonly="true"><br />
             <label>연락처:</label><input type="text" name="phone" value="${userInfo.phone}" readonly="true"><br />
             <label>홈페이지:</label><input type="text" name="homepage" value="${userInfo.homepage}" readonly="true"><br />
-            <label>소개:</label><br /><textarea name="description" id="" cols="30" rows="10"
-                value="${userInfo.description}" readonly="true"></textarea>
+            <label>소개:</label><br /><textarea name="description" id="" cols="30" rows="10" readonly="true">${userInfo.description}</textarea>
             <button type="button"
                 onclick="location.href='${pageContext.request.contextPath}/user/modify';">수정하기</button>
         </div>
