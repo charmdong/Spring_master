@@ -45,7 +45,8 @@
                     phone.focus();
                     return false;
                 }
-
+                
+                if(!confirm("정보를 수정하시겠습니까?")) return false;
                 infoForm.submit();
             };
         </script>
