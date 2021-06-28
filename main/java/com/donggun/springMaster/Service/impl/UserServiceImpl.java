@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.donggun.springMaster.repository.UserRepository;
 import com.donggun.springMaster.service.UserService;
@@ -49,9 +50,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public void saveUserInfo(UserVO userInfo) throws Exception {
 		UserVO origin = userRepository.findOne(userInfo.getId());
-		
+
 		origin.setNickName(userInfo.getNickName());
 		origin.setUserName(userInfo.getUserName());
 		origin.setEmail(userInfo.getEmail());
@@ -63,6 +65,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteUserInfo(String userId) throws Exception {
 		userRepository.delete(userId);
 	}
