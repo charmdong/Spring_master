@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
@@ -61,7 +62,7 @@ public class UserVO {
 	@Lob
 	private String description;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER)
 	private List<BoardVO> boardList = new ArrayList<BoardVO>();
 
 	@Column(name="ROLE_TYPE")
