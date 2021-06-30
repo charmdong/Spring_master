@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public UserVO getUserInfo(String userId) throws Exception {
 		return userRepository.findOne(userId);
 	}
