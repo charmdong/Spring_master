@@ -81,26 +81,6 @@ public class UserController {
 	}
 	
 	/**
-	 * 사용자 상세 정보 조회
-	 * @param userId
-	 * @param model
-	 * @return detail.jsp
-	 */
-	@RequestMapping(value="/detail", method=RequestMethod.GET)
-	public String userDetail(@RequestParam String userId, Model model) {
-		UserVO userInfo = null;
-		
-		try {
-			userInfo = userService.getUserInfo(userId);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("userInfo", userInfo);
-		System.out.println(userInfo);
-		return "user/detail";
-	}
-	
-	/**
 	 * 사용자 정보 수정
 	 * @param userInfo
 	 * @return
