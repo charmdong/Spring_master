@@ -14,7 +14,7 @@
                 <button>나의 게시글</button>
             </li>
             <li>
-                <button onclick="location.href='${pageContext.request.contextPath}/user/detail?userId=${loginInfo.id}';">마이페이지</button>
+                <button onclick="location.href='${pageContext.request.contextPath}/user/detail';">마이페이지</button>
             </li>
             <li>
                 <button onclick="location.href='${pageContext.request.contextPath}/user/logout';">로그아웃</button>
