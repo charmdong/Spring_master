@@ -3,6 +3,7 @@ package com.donggun.springMaster.controller.RestController;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,5 +45,52 @@ public class BoardRestController {
 		}
 		
 		return boardList;
+	}
+	
+	/**
+	 * 게시물 상세 정보 조회
+	 * @param boardNo
+	 * @return
+	 */
+	@RequestMapping(value="/detail/{boardNo}", method=RequestMethod.GET) 
+	public BoardVO getBoardInfo(@PathVariable String boardNo) {
+		BoardVO boardInfo = null;
+		
+		try {
+			boardInfo = boardService.getBoardInfo(boardNo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return boardInfo;
+	}
+	
+	/**
+	 * 게시글 삭제
+	 * @param boardNo
+	 */
+	@RequestMapping(value="/delete", method=RequestMethod.DELETE)
+	public void deleteBoardInfo(@RequestParam String boardNo) {
+		try {
+			boardService.deleteBoard(boardNo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 게시글 등록 및 수정
+	 * @param board
+	 */
+	@RequestMapping(value="/save", method=RequestMethod.POST) 
+	public void saveBoardInfo(BoardVO board) {
+		try {
+			boardService.saveBoard(board);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
