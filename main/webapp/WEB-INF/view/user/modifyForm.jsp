@@ -6,7 +6,60 @@
         <meta charset="UTF-8">
         <title>회원 정보 수정</title>
     </head>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script>
+        window.onload = function() {
+            $.ajax({
+                type: "GET",
+                data: "json",
+                url: "${pageContext.request.contextPath}/userApi/getUserInfo?userId=${loginInfo.id}",
+                success: function(res) {
+                    setUserInfo(res);
+                },
+                error: function(data) {
+                    alert("개인 정보 조회 과정에서 문제가 발생했습니다. \n 관리자에게 문의해주시기 바랍니다.");
+                }
+            });
+        };
 
+        function setUserInfo(userInfo) {
+            $('input[name="id"]').val(userInfo.id);
+            $('input[name="userName"]').val(userInfo.userName);
+            $('input[name="nickName"]').val(userInfo.nickName);
+            $('input[name="email"]').val(userInfo.email);
+            $('input[name="phone"]').val(userInfo.phone);
+            $('input[name="homepage"]').val(userInfo.homepage);
+            $('textarea[name="description"]').val(userInfo.description);
+        };
+
+        function validateForm() {
+            let userName = document.getElementsByName("userName")[0];
+            let nickName = document.getElementsByName("nickName")[0];
+            let phone = document.getElementsByName("phone")[0];
+
+            if (userName.value == "") {
+                alert("Input your name");
+                userName.focus();
+                return false;
+            }
+
+            if (nickName.value == "") {
+                alert("Input nick name");
+                nickName.focus();
+                return false;
+            }
+
+            if (phone.value == "") {
+                alert("Input nick name");
+                phone.focus();
+                return false;
+            }
+            
+            if(!confirm("정보를 수정하시겠습니까?")) return false;
+            infoForm.submit();
+        };
+    </script>
+    
     <body>
         <div id="userInfo_container">
             <form id="infoForm" action="${pageContext.request.contextPath}/user/save" method="POST">
@@ -22,34 +75,7 @@
                 <button type="button" onclick="validateForm();">수정하기</button>
             </form>
         </div>
-        <script>
-            function validateForm() {
-                let userName = document.getElementsByName("userName")[0];
-                let nickName = document.getElementsByName("nickName")[0];
-                let phone = document.getElementsByName("phone")[0];
-
-                if (userName.value == "") {
-                    alert("Input your name");
-                    userName.focus();
-                    return false;
-                }
-
-                if (nickName.value == "") {
-                    alert("Input nick name");
-                    nickName.focus();
-                    return false;
-                }
-
-                if (phone.value == "") {
-                    alert("Input nick name");
-                    phone.focus();
-                    return false;
-                }
-                
-                if(!confirm("정보를 수정하시겠습니까?")) return false;
-                infoForm.submit();
-            };
-        </script>
+        
     </body>
 
     </html>
