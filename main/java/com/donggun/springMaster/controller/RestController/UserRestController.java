@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.donggun.springMaster.service.UserService;
 import com.donggun.springMaster.vo.UserVO;
 
+import io.swagger.annotations.Api;
+
 /**
  * 사용자 관련 API
  * @author donggun.Chung
@@ -17,6 +19,7 @@ import com.donggun.springMaster.vo.UserVO;
  */
 @RequestMapping("/userApi")
 @RestController
+@Api(value="UserRestController", description="UserRestController Test.")
 public class UserRestController {
 	
 	private final UserService userService;
