@@ -19,7 +19,7 @@ public class SwaggerConfig extends WebMvcConfigurerAdapter {
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.any())
+				.apis(RequestHandlerSelectors.basePackage("com.donggun.springMaster.controller.RestController"))
 				.paths(PathSelectors.any())
 				.build()
 				.pathMapping("/");
