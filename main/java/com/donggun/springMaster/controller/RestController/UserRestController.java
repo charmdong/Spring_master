@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.donggun.springMaster.service.UserService;
 import com.donggun.springMaster.vo.UserVO;
 
-import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * 사용자 관련 API
@@ -19,7 +20,6 @@ import io.swagger.annotations.Api;
  */
 @RequestMapping("/userApi")
 @RestController
-@Api(value="UserRestController", description="UserRestController Test.")
 public class UserRestController {
 	
 	private final UserService userService;
@@ -36,6 +36,8 @@ public class UserRestController {
 	 * @return
 	 */
 	@RequestMapping(value="/getUserInfo", method=RequestMethod.GET)
+	@ApiOperation(value="사용자 정보 조회", notes="ID를 통해 사용자 정보를 조회한다.")
+	@ApiImplicitParam(name="userId", value="사용자 아이디", required=true)
 	public UserVO getUserInfo(@RequestParam String userId) {
 		UserVO userInfo = null;
 		
@@ -53,6 +55,7 @@ public class UserRestController {
 	 * @param userInfo
 	 */
 	@RequestMapping(value="/saveUserInfo", method=RequestMethod.POST)
+	@ApiOperation(value="사용자 정보 등록 및 수정", notes="등록되어 있지 않으면 등록하고, 되어 있으면 수정한다.")
 	public void saveUserInfo(UserVO userInfo) {
 		try {
 			userService.saveUserInfo(userInfo);
@@ -66,6 +69,8 @@ public class UserRestController {
 	 * @param userId
 	 */
 	@RequestMapping(value="/deleteUserInfo", method=RequestMethod.DELETE)
+	@ApiOperation(value="사용자 정보 삭제", notes="ID에 해당하는 사용자 정보를 삭제한다.")
+	@ApiImplicitParam(name="userId", value="사용자 아이디", required=true)
 	public void deleteUserInfo(@RequestParam String userId) {
 		try {
 			userService.deleteUserInfo(userId);

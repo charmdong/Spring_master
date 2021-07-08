@@ -20,6 +20,8 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * 사용자 정보 VO
  * 
@@ -35,20 +37,24 @@ public class UserVO {
 	@Id
 	@NotNull
 	@NotEmpty
+	@ApiModelProperty(example = "사용자 아이디")
 	private String id;
 	
 	@NotNull
 	@NotEmpty
 	@Column(name="NICK_NAME")
+	@ApiModelProperty(example = "사용자 닉네임")
 	private String nickName;
 	
 	@NotNull
 	@NotEmpty
+	@ApiModelProperty(example = "사용자 패스워드")
 	private String password;
 	
 	@NotNull
 	@NotEmpty
 	@Column(name="USER_NAME")
+	@ApiModelProperty(example = "사용자 이름")
 	private String userName;
 	
 	@Email
@@ -57,6 +63,7 @@ public class UserVO {
 	@NotNull
 	@NotEmpty
 	private String phone;
+	
 	private String homepage;
 	
 	@Lob
