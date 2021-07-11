@@ -1,6 +1,7 @@
 package com.donggun.springMaster.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,21 +29,26 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserVO login(String userId, String password) throws Exception {
-		UserVO userInfo = userRepository.findOne(userId);
+	public Optional<UserVO> login(String userId, String password) throws Exception {
 		
-		if(!password.equals(userInfo.getPassword())) {
+		Optional<UserVO> userInfo = Optional.ofNullable(userRepository.findOne(userId));
+		
+		if(!userInfo.isPresent()) {
 			return null;
 		}
 		else {
+			if(!password.equals(userInfo.get().getPassword())) {
+				return null;
+			}
+			
 			return userInfo;
 		}
 	}
 
 	@Override
 	@Transactional
-	public UserVO getUserInfo(String userId) throws Exception {
-		return userRepository.findOne(userId);
+	public Optional<UserVO> getUserInfo(String userId) throws Exception {
+		return Optional.ofNullable(userRepository.findOne(userId));
 	}
 	
 	@Override
