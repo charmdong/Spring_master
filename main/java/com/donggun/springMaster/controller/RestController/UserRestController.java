@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.donggun.springMaster.model.ApiResult;
 import com.donggun.springMaster.service.UserService;
 import com.donggun.springMaster.vo.UserVO;
 
@@ -33,17 +34,18 @@ public class UserRestController {
 	/**
 	 * 사용자 정보 조회
 	 * @param userId
-	 * @return
+	 * @return ApiResult<>
 	 */
 	@RequestMapping(value="/getUserInfo", method=RequestMethod.GET)
 	@ApiOperation(value="사용자 정보 조회", notes="ID를 통해 사용자 정보를 조회한다.")
 	@ApiImplicitParam(name="userId", value="사용자 아이디", required=true)
-	public UserVO getUserInfo(@RequestParam String userId) {
-		UserVO userInfo = null;
+	public ApiResult<UserVO> getUserInfo(@RequestParam String userId) {
+		ApiResult<UserVO> userInfo = null;
 		
 		try {
-			userInfo = userService.getUserInfo(userId);
+			userInfo = ApiResult.succeed(userService.getUserInfo(userId).get());
 		} catch (Exception e) {
+			userInfo = ApiResult.failed("사용자 정보를 조회하지 못했습니다.");
 			e.printStackTrace();
 		}
 		

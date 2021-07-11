@@ -1,13 +1,13 @@
 package com.donggun.springMaster.controller;
 
 import java.util.Date;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,7 +42,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(@RequestParam String userId, @RequestParam String password, HttpSession session, Model model) {
-		UserVO userInfo = null;
+		Optional<UserVO> userInfo = null;
 		
 		try {
 			userInfo = userService.login(userId, password);
@@ -58,10 +58,10 @@ public class UserController {
 		
 		LoginVO loginVO = new LoginVO();
 		
-		loginVO.setId(userInfo.getId());
-		loginVO.setName(userInfo.getUserName());
+		loginVO.setId(userInfo.get().getId());
+		loginVO.setName(userInfo.get().getUserName());
 		loginVO.setLoginDate(new Date());
-		loginVO.setIsAdmin(RoleType.ADMIN.equals(userInfo.getRoleType()));
+		loginVO.setIsAdmin(RoleType.ADMIN.equals(userInfo.get().getRoleType()));
 		
 		session.setAttribute("loginInfo", loginVO);
 		
@@ -78,27 +78,6 @@ public class UserController {
 		session.invalidate();
 		
 		return "redirect:/";
-	}
-	
-	/**
-	 * 사용자 정보 수정
-	 * @param userInfo
-	 * @return
-	 */
-	@RequestMapping(value="/modify")
-	public String modifyForm(Model model, HttpSession session) {
-		LoginVO loginInfo = (LoginVO) session.getAttribute("loginInfo");
-		String userId = loginInfo.getId();
-		UserVO userInfo = null;
-		
-		try {
-			userInfo = userService.getUserInfo(userId);
-			model.addAttribute("userInfo", userInfo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return "user/modifyForm";
 	}
 	
 	/**
