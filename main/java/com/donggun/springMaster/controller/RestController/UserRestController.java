@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiOperation;
  * @since 2021.06.30.
  * @version 
  */
-@RequestMapping("/userApi")
+@RequestMapping("/api/user")
 @RestController
 public class UserRestController {
 	
