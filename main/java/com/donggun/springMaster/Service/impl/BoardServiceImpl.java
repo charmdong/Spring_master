@@ -1,6 +1,8 @@
 package com.donggun.springMaster.service.impl;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import com.donggun.springMaster.repository.BoardRepository;
 import com.donggun.springMaster.repository.UserRepository;
 import com.donggun.springMaster.service.BoardService;
 import com.donggun.springMaster.vo.BoardVO;
+import com.donggun.springMaster.vo.CommentVO;
 import com.donggun.springMaster.vo.UserVO;
 
 /**
@@ -40,8 +43,8 @@ public class BoardServiceImpl implements BoardService {
 	 * @throws Exception
 	 */
 	@Override
-	public BoardVO getBoardInfo(String boardNo) throws Exception {
-		return boardRepository.findOne(boardNo);
+	public Optional<BoardVO> getBoardInfo(String boardNo) throws Exception {
+		return Optional.ofNullable(boardRepository.findOne(boardNo));
 	}
 
 	/**
@@ -81,6 +84,45 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void deleteBoard(String boardNo) throws Exception {
 		boardRepository.delete(boardNo);
+	}
+
+	/**
+	 * 게시글 댓글 조회
+	 * 
+	 * @param boardNo
+	 * @param commentNo
+	 * @return comment Info
+	 * @throws Exception
+	 */
+	@Override
+	public Optional<CommentVO> getCommentInfo(String boardNo, String commentNo) throws Exception {
+		Optional<BoardVO> board = Optional.ofNullable(boardRepository.findOne(boardNo));
+		Optional<CommentVO> comment = board.get().getCommentList().stream().filter(c -> commentNo.equals(c.getCommentNo())).findFirst();
+		
+		return comment;
+	}
+
+	/**
+	 * 댓글 등록 및 수정
+	 * 
+	 * @param comment
+	 * @throws Exception
+	 */
+	@Override
+	public void saveComment(CommentVO comment) throws Exception {
+		
+	}
+
+	/**
+	 * 댓글 삭제
+	 * 
+	 * @param boardNo
+	 * @param commentNo
+	 * @throws Exception
+	 */
+	@Override
+	public void deleteComment(String boardNo, String commentNo) throws Exception {
+		
 	}
 	
 }

@@ -55,29 +55,6 @@ public class BoardController {
 		
 		return "board/list";
 	}
-
-	/**
-	 * 게시물 상세 조회 
-	 * @param boardNo
-	 * @param model
-	 * @return detail.jsp
-	 */
-	@RequestMapping(value="/detail/{boardNo}", method=RequestMethod.GET)
-	public String getDetailBoardInfo(@PathVariable String boardNo, Model model) {
-		BoardVO board = null;
-		
-		try {
-			board = boardService.getBoardInfo(boardNo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		List<CommentVO> commentList = board.getCommentList();
-		model.addAttribute("board", board);
-		model.addAttribute("commentList", commentList);
-		
-		return "board/detail";
-	}
 	
 	/**
 	 * 게시물 삭제

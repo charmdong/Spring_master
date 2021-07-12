@@ -1,8 +1,10 @@
 package com.donggun.springMaster.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.donggun.springMaster.vo.BoardVO;
+import com.donggun.springMaster.vo.CommentVO;
 
 /**
  * Board Service Interface
@@ -12,11 +14,17 @@ import com.donggun.springMaster.vo.BoardVO;
  */
 public interface BoardService {
 
-	public BoardVO getBoardInfo(String boardNo) throws Exception;
+	public Optional<BoardVO> getBoardInfo(String boardNo) throws Exception;
 	
 	public List<BoardVO> getBoardList(String regId) throws Exception;
 	
 	public void saveBoard(BoardVO board) throws Exception;
 	
 	public void deleteBoard(String boardNo) throws Exception;
+	
+	public Optional<CommentVO> getCommentInfo(String boardNo, String commentNo) throws Exception;
+	
+	public void saveComment(CommentVO comment) throws Exception;
+	
+	public void deleteComment(String boardNo, String commentNo) throws Exception;
 }

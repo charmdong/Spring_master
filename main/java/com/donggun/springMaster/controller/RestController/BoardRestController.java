@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.donggun.springMaster.model.ApiResult;
 import com.donggun.springMaster.service.BoardService;
 import com.donggun.springMaster.vo.BoardVO;
+import com.donggun.springMaster.vo.CommentVO;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -24,7 +26,7 @@ import io.swagger.annotations.ApiResponses;
  * @since 2021.07.03.
  * @version 
  */
-@RequestMapping("/boardApi")
+@RequestMapping("/api/board")
 @RestController
 @Api(value = "게시글 관련 API")
 public class BoardRestController {
@@ -70,17 +72,38 @@ public class BoardRestController {
 	@RequestMapping(value="/detail/{boardNo}", method=RequestMethod.GET)
 	@ApiOperation(value="게시글 상제 정보 조회", notes="게시글 상세 정보를 조회한다.")
 	@ApiImplicitParam(name="boardNo", value="게시글 번호", required=true)
-	public BoardVO getBoardInfo(@PathVariable String boardNo) {
-		BoardVO boardInfo = null;
+	public ApiResult<BoardVO> getBoardInfo(@PathVariable String boardNo) {
+		ApiResult<BoardVO> board = null;
 		
 		try {
-			boardInfo = boardService.getBoardInfo(boardNo);
+			board = ApiResult.succeed(boardService.getBoardInfo(boardNo).get());
 		} catch (Exception e) {
+			board = ApiResult.failed("게시글 정보를 조회하지 못했습니다.");
 			e.printStackTrace();
 		}
 		
-		return boardInfo;
+		return board;
 	}
+	
+/*
+ 	@RequestMapping(value="/detail/{boardNo}/comment/{commentNo}", method=RequestMethod.GET)
+	@ApiOperation(value="댓글 정보 조회", notes="게시글에 달린 댓글을 상세 조회한다.")
+	@ApiImplicitParams({
+		@ApiImplicitParam(name="boardNo", value="게시글 번호", required=true),
+		@ApiImplicitParam(name="commentNo", value="댓글 번호", required=true)
+	})
+	public ApiResult<CommentVO> getCommentInfo(@PathVariable String boardNo, @PathVariable String commentNo) {
+		ApiResult<CommentVO> comment = null;
+		
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return comment;
+	}
+*/	
 	
 	/**
 	 * 게시글 삭제
