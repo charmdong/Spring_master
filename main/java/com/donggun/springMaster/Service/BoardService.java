@@ -14,7 +14,7 @@ import com.donggun.springMaster.vo.CommentVO;
  */
 public interface BoardService {
 
-	public Optional<BoardVO> getBoardInfo(String boardNo) throws Exception;
+	public Optional<BoardVO> getBoardInfo(String userId, String boardNo) throws Exception;
 	
 	public List<BoardVO> getBoardList(String regId) throws Exception;
 	

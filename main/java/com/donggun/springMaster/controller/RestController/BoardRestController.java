@@ -2,6 +2,8 @@ package com.donggun.springMaster.controller.RestController;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.donggun.springMaster.model.ApiResult;
 import com.donggun.springMaster.service.BoardService;
 import com.donggun.springMaster.vo.BoardVO;
-import com.donggun.springMaster.vo.CommentVO;
+import com.donggun.springMaster.vo.LoginVO;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -52,12 +54,13 @@ public class BoardRestController {
 		@ApiResponse(code = 404, message = "[ERROR] 서버에 문제가 발생했습니다."),
 		@ApiResponse(code = 500, message = "[ERROR] 페이지를 찾을 수 없습니다.")
 	})
-	public List<BoardVO> getBoardList(@RequestParam("userId") String regId) {
-		List<BoardVO> boardList = null;
+	public ApiResult<List<BoardVO>> getBoardList(@RequestParam("userId") String regId) {
+		ApiResult<List<BoardVO>> boardList = null;
 		
 		try {
-			boardList = boardService.getBoardList(regId);
+			boardList = ApiResult.succeed(boardService.getBoardList(regId));
 		} catch (Exception e) {
+			boardList = ApiResult.failed(e.getMessage());
 			e.printStackTrace();
 		}
 		
@@ -72,11 +75,13 @@ public class BoardRestController {
 	@RequestMapping(value="/detail/{boardNo}", method=RequestMethod.GET)
 	@ApiOperation(value="게시글 상제 정보 조회", notes="게시글 상세 정보를 조회한다.")
 	@ApiImplicitParam(name="boardNo", value="게시글 번호", required=true)
-	public ApiResult<BoardVO> getBoardInfo(@PathVariable String boardNo) {
+	public ApiResult<BoardVO> getBoardInfo(@PathVariable String boardNo, HttpSession session) {
 		ApiResult<BoardVO> board = null;
+		LoginVO loginInfo = (LoginVO)session.getAttribute("loginInfo");
+		String userId = loginInfo.getId();
 		
 		try {
-			board = ApiResult.succeed(boardService.getBoardInfo(boardNo).get());
+			board = ApiResult.succeed(boardService.getBoardInfo(userId, boardNo).get());
 		} catch (Exception e) {
 			board = ApiResult.failed("게시글 정보를 조회하지 못했습니다.");
 			e.printStackTrace();

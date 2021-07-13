@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.donggun.springMaster.repository.BoardRepository;
 import com.donggun.springMaster.repository.UserRepository;
@@ -43,7 +44,9 @@ public class BoardServiceImpl implements BoardService {
 	 * @throws Exception
 	 */
 	@Override
-	public Optional<BoardVO> getBoardInfo(String boardNo) throws Exception {
+	@Transactional
+	public Optional<BoardVO> getBoardInfo(String userId, String boardNo) throws Exception {
+		// TODO JPQL
 		return Optional.ofNullable(boardRepository.findOne(boardNo));
 	}
 
@@ -55,10 +58,15 @@ public class BoardServiceImpl implements BoardService {
 	 * @throws Exception
 	 */
 	@Override
+	@Transactional
 	public List<BoardVO> getBoardList(String regId) throws Exception {
 		UserVO user = userRepository.findOne(regId);
 		
 		List<BoardVO> boardList = boardRepository.findByUser(user);
+		
+		Stream<BoardVO> stream = boardList.stream();
+		
+		stream.forEach(board -> System.out.println(board));
 		
 		return boardList;
 	}
@@ -95,6 +103,7 @@ public class BoardServiceImpl implements BoardService {
 	 * @throws Exception
 	 */
 	@Override
+	@Transactional
 	public Optional<CommentVO> getCommentInfo(String boardNo, String commentNo) throws Exception {
 		Optional<BoardVO> board = Optional.ofNullable(boardRepository.findOne(boardNo));
 		Optional<CommentVO> comment = board.get().getCommentList().stream().filter(c -> commentNo.equals(c.getCommentNo())).findFirst();
