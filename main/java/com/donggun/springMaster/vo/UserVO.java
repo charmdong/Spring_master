@@ -8,7 +8,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
@@ -19,6 +18,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -69,7 +70,8 @@ public class UserVO {
 	@Lob
 	private String description;
 
-	@OneToMany(mappedBy = "user", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "user")
+	@JsonBackReference
 	private List<BoardVO> boardList = new ArrayList<BoardVO>();
 
 	@Column(name="ROLE_TYPE")

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +20,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  * 게시글 정보 VO
@@ -50,10 +53,12 @@ public class BoardVO {
 	@JoinColumn(name = "REG_ID")
 	private UserVO user;
 
-	@OneToMany(mappedBy = "board")
+	@OneToMany(mappedBy = "board", fetch=FetchType.EAGER)
+	@JsonBackReference
 	private List<CommentVO> commentList = new ArrayList<CommentVO>();
 
-	@OneToMany(mappedBy = "board")
+	@OneToMany(mappedBy = "board", fetch=FetchType.EAGER)
+	@JsonBackReference
 	private List<FileVO> fileList = new ArrayList<FileVO>();
 
 	@Lob
@@ -129,6 +134,13 @@ public class BoardVO {
 
 	public void setFileList(List<FileVO> fileList) {
 		this.fileList = fileList;
+	}
+
+	@Override
+	public String toString() {
+		return "BoardVO [boardNo=" + boardNo + ", regDate=" + regDate + ", modDate=" + modDate + ", user=" + user
+				+ ", commentList=" + commentList + ", fileList=" + fileList + ", content=" + content + ", likeCnt="
+				+ likeCnt + "]";
 	}
 
 }
