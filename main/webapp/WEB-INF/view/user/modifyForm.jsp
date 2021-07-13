@@ -12,9 +12,9 @@
             $.ajax({
                 type: "GET",
                 data: "json",
-                url: "${pageContext.request.contextPath}/userApi/getUserInfo?userId=${loginInfo.id}",
+                url: "${pageContext.request.contextPath}/api/user/getUserInfo?userId=${loginInfo.id}",
                 success: function(res) {
-                    setUserInfo(res);
+                    setUserInfo(res.data);
                 },
                 error: function(data) {
                     alert("개인 정보 조회 과정에서 문제가 발생했습니다. \n 관리자에게 문의해주시기 바랍니다.");
